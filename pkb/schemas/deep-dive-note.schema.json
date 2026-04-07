@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "pkb/schemas/deep-dive-note.schema.json",
+  "title": "Deep-Dive Research Note",
+  "description": "A focused, detailed exploration of a specific development, question, or project. Unlike wiki pages, notes are time-stamped and may become outdated.",
+  "type": "object",
+  "required": ["id", "title", "topic", "status", "summary", "sources", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "examples": ["note-power-bi-direct-lake-2026-04", "note-dubai-re-q1-2026"]
+    },
+    "title": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Topic ID from topics.json"
+    },
+    "subtopic": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "archived"],
+      "description": "draft=in progress; reviewed=verified and complete; archived=superseded or outdated"
+    },
+    "trigger": {
+      "type": "string",
+      "description": "What prompted this note — digest item ID, a client question, or personal observation",
+      "examples": ["client-question", "digest-item:di-2026-04-05-001", "personal-observation"]
+    },
+    "summary": {
+      "type": "string",
+      "description": "3-5 sentence executive summary of what this note covers and concludes"
+    },
+    "key_findings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bullet list of concrete, specific findings — not vague observations"
+    },
+    "open_questions": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Things not yet resolved — drives future research"
+    },
+    "body": {
+      "type": "string",
+      "description": "Full markdown-compatible body of the note. Can be as long as needed."
+    },
+    "data_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["value", "source"],
+        "properties": {
+          "metric":  { "type": "string" },
+          "value":   { "type": "string" },
+          "period":  { "type": "string" },
+          "source":  { "type": "string" },
+          "url":     { "type": "string", "format": "uri" }
+        }
+      },
+      "description": "Specific numbers, statistics, or data cited in the note"
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["url", "title"],
+        "properties": {
+          "url":              { "type": "string", "format": "uri" },
+          "title":            { "type": "string" },
+          "author":           { "type": "string" },
+          "accessed_at":      { "type": "string", "format": "date" },
+          "credibility_tier": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "notes":            { "type": "string" }
+        }
+      }
+    },
+    "related_wiki": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of wiki pages this note connects to or should update"
+    },
+    "related_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "digest_refs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "wiki_update_needed": {
+      "type": "boolean",
+      "description": "Set to true if findings here should be reflected in a wiki page"
+    },
+    "content_idea_potential": {
+      "type": "boolean",
+      "description": "Set to true if this could become a post, video, or training module"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": { "type": "string", "format": "date" },
+    "updated_at": { "type": "string", "format": "date" },
+    "author_notes": {
+      "type": "string",
+      "description": "Private observations, follow-up reminders, or caveats"
+    }
+  }
+}

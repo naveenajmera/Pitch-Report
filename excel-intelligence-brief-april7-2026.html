@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel Intelligence Brief – For Finance Professionals · April 7, 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:          #0f172a;
+      --charcoal:      #1e293b;
+      --secondary:     #334155;
+      --muted:         #64748b;
+      --light:         #94a3b8;
+      --border:        #e2e8f0;
+      --bg:            #f8fafc;
+      --white:         #ffffff;
+      --green:         #15803d;
+      --green-light:   #dcfce7;
+      --green-border:  #86efac;
+      --gold:          #b45309;
+      --gold-mid:      #f59e0b;
+      --gold-light:    #fffbeb;
+      --gold-border:   #fde68a;
+      --red:           #b91c1c;
+      --red-light:     #fef2f2;
+      --red-border:    #fca5a5;
+      --blue:          #1d4ed8;
+      --blue-light:    #dbeafe;
+      --blue-border:   #bfdbfe;
+      --purple:        #7c3aed;
+      --purple-light:  #ede9fe;
+      --orange:        #c2410c;
+      --orange-light:  #fff7ed;
+      --orange-border: #fed7aa;
+      --teal:          #0f766e;
+      --teal-light:    #ccfbf1;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--secondary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* ── HOOK BANNER ── */
+    .hook-banner {
+      background: var(--dark);
+      border-bottom: 3px solid var(--gold-mid);
+      padding: 26px 32px;
+      text-align: center;
+    }
+    .hook-banner p {
+      color: rgba(255,255,255,0.88);
+      font-size: 14.5px;
+      line-height: 1.75;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .hook-banner strong { color: #fbbf24; }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1a3a6e 50%, #0f172a 100%);
+      padding: 48px 32px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at center, rgba(59,130,246,0.10) 0%, transparent 70%);
+    }
+    .header-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #60a5fa;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(24px, 5vw, 38px);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      position: relative;
+    }
+    .header-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .header-edition {
+      font-size: 11px;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.5px;
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .header-badges {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .hbadge {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .hbadge-blue   { background: rgba(59,130,246,0.15);  color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+    .hbadge-gold   { background: rgba(245,158,11,0.15);  color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+    .hbadge-green  { background: rgba(21,128,61,0.15);   color: #4ade80; border: 1px solid rgba(21,128,61,0.3); }
+    .hbadge-purple { background: rgba(124,58,237,0.15);  color: #c4b5fd; border: 1px solid rgba(124,58,237,0.3); }
+
+    /* ── SECTIONS ── */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 20px;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .section-header {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      font-size: 18px;
+      width: 34px; height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+    .section-header .section-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      text-transform: none;
+      letter-spacing: 0;
+      display: block;
+      margin-top: 1px;
+    }
+    .section-body { padding: 20px 22px; }
+
+    /* section header colour themes */
+    .sh-gold   { background: linear-gradient(90deg, #fffbeb, #fef3c7); }
+    .sh-gold   h2 { color: #92400e; }
+    .sh-green  { background: linear-gradient(90deg, #f0fdf4, #dcfce7); }
+    .sh-green  h2 { color: #14532d; }
+    .sh-red    { background: linear-gradient(90deg, #fef2f2, #fee2e2); }
+    .sh-red    h2 { color: #7f1d1d; }
+    .sh-blue   { background: linear-gradient(90deg, #eff6ff, #dbeafe); }
+    .sh-blue   h2 { color: #1e3a8a; }
+    .sh-purple { background: linear-gradient(90deg, #f5f3ff, #ede9fe); }
+    .sh-purple h2 { color: #4c1d95; }
+    .sh-dark   { background: linear-gradient(90deg, #0f172a, #1e293b); }
+    .sh-dark   h2 { color: #f1f5f9; }
+    .sh-orange { background: linear-gradient(90deg, #fff7ed, #fed7aa); }
+    .sh-orange h2 { color: #7c2d12; }
+    .sh-teal   { background: linear-gradient(90deg, #f0fdfa, #ccfbf1); }
+    .sh-teal   h2 { color: #134e4a; }
+
+    /* ── TOPIC CARD (Today's Excel Edge) ── */
+    .topic-card {
+      background: linear-gradient(135deg, #0f172a, #1a3a6e, #0f172a);
+      border-radius: 12px;
+      padding: 24px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .topic-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%);
+    }
+    .topic-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(147,197,253,0.8);
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .topic-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .topic-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* ── COMPARISON TABLE (Before/After) ── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 13px;
+    }
+    .compare-table thead tr th {
+      padding: 9px 14px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .compare-table th.col-old  { background: var(--red-light);  color: var(--red);  border-radius: 8px 0 0 0; }
+    .compare-table th.col-new  { background: var(--green-light); color: var(--green); border-radius: 0 8px 0 0; }
+    .compare-table tbody tr td {
+      padding: 10px 14px;
+      border-top: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .compare-table tbody tr td:first-child {
+      background: #fff5f5;
+      color: var(--secondary);
+      border-right: 6px solid var(--bg);
+    }
+    .compare-table tbody tr td:last-child {
+      background: #f0fdf4;
+      color: var(--secondary);
+    }
+    .t-strike { text-decoration: line-through; color: var(--muted); font-size: 12px; }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 14px 0;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 13px;
+      color: #e2e8f0;
+      line-height: 1.7;
+      overflow-x: auto;
+      border-left: 4px solid #3b82f6;
+    }
+    .code-block .fn  { color: #7dd3fc; font-weight: 700; }
+    .code-block .arg { color: #fbbf24; }
+    .code-block .cmt { color: #64748b; font-style: italic; }
+    .code-block .str { color: #86efac; }
+
+    /* ── KPI GRID ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .kpi-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: var(--bg);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .kpi-number-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+    .kpi-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .kpi-tag {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 7px;
+      border-radius: 8px;
+    }
+    .kpi-tag-gold   { background: var(--gold-light);   color: #92400e; border: 1px solid var(--gold-border); }
+    .kpi-tag-green  { background: var(--green-light);  color: #14532d; border: 1px solid var(--green-border); }
+    .kpi-tag-red    { background: var(--red-light);    color: #7f1d1d; border: 1px solid var(--red-border); }
+    .kpi-tag-blue   { background: var(--blue-light);   color: #1e3a8a; border: 1px solid var(--blue-border); }
+    .kpi-tag-purple { background: var(--purple-light); color: #4c1d95; border: 1px solid #ddd6fe; }
+    .kpi-tag-orange { background: var(--orange-light); color: #7c2d12; border: 1px solid var(--orange-border); }
+    .kpi-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .kpi-insight {
+      font-size: 11.5px;
+      color: var(--secondary);
+      line-height: 1.5;
+    }
+    .kpi-insight strong { color: var(--dark); }
+
+    /* ── FUNCTION HIGHLIGHT CARD ── */
+    .fn-card {
+      background: linear-gradient(135deg, #eff6ff, #dbeafe);
+      border: 1px solid var(--blue-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+    .fn-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1e40af;
+      margin-bottom: 6px;
+    }
+    .fn-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .fn-subtitle {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: #1d4ed8;
+      margin-bottom: 12px;
+    }
+    .fn-body {
+      font-size: 13px;
+      color: var(--secondary);
+      line-height: 1.7;
+    }
+
+    /* ── USE CASE SCENARIO ── */
+    .scenario-header {
+      background: var(--charcoal);
+      border-radius: 8px 8px 0 0;
+      padding: 10px 16px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(147,197,253,0.85);
+    }
+    .scenario-body {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 16px;
+      font-size: 13px;
+      color: var(--secondary);
+      line-height: 1.7;
+    }
+    .scenario-step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+    .scenario-step:last-child { margin-bottom: 0; }
+    .step-num {
+      background: var(--dark);
+      color: #60a5fa;
+      font-size: 11px;
+      font-weight: 800;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { flex: 1; font-size: 13px; line-height: 1.6; }
+    .step-text strong { color: var(--dark); }
+
+    /* ── AUDIT FLAG / WARNING ── */
+    .audit-flag {
+      background: var(--red-light);
+      border: 1px solid var(--red-border);
+      border-left: 4px solid var(--red);
+      border-radius: 0 10px 10px 0;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+    .audit-flag-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .audit-flag-body {
+      font-size: 13px;
+      color: #7f1d1d;
+      line-height: 1.65;
+    }
+    .audit-flag-body strong { color: var(--red); }
+    .risk-badges {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .risk-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .rb-red    { background: #fee2e2; color: #7f1d1d; border: 1px solid var(--red-border); }
+    .rb-orange { background: var(--orange-light); color: #7c2d12; border: 1px solid var(--orange-border); }
+    .rb-gold   { background: var(--gold-light); color: #78350f; border: 1px solid var(--gold-border); }
+
+    /* ── BOYCOTT-STYLE QUOTES (Accountant's Corner) ── */
+    .quote-item {
+      background: linear-gradient(135deg, var(--dark), #1a3a6e);
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .quote-item:last-child { margin-bottom: 0; }
+    .quote-item::before {
+      content: '"';
+      position: absolute;
+      top: 6px; right: 14px;
+      font-size: 60px;
+      color: rgba(245,158,11,0.15);
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+    }
+    .quote-text {
+      font-size: 13.5px;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .quote-attribution {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #f59e0b;
+    }
+
+    /* ── INSIGHT CARDS ── */
+    .insight-card {
+      background: var(--gold-light);
+      border: 1px solid var(--gold-border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .insight-card:last-child { margin-bottom: 0; }
+    .insight-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+    .insight-text {
+      font-size: 13px;
+      color: #78350f;
+      line-height: 1.65;
+    }
+
+    /* ── TRANSITION CARD (Excel → Power BI) ── */
+    .transition-card {
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      border: 1px solid #ddd6fe;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .transition-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 8px;
+    }
+    .transition-body {
+      font-size: 13px;
+      color: #4c1d95;
+      line-height: 1.7;
+    }
+    .transition-body strong { color: var(--dark); }
+
+    /* ── TOMORROW PREVIEW ── */
+    .preview-card {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border-radius: 12px;
+      padding: 22px;
+      color: white;
+    }
+    .preview-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(147,197,253,0.7);
+      margin-bottom: 8px;
+    }
+    .preview-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #60a5fa;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .preview-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+    .preview-tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(96,165,250,0.12);
+      border: 1px solid rgba(96,165,250,0.3);
+      color: #93c5fd;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── BULLET LIST ── */
+    .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .bullet-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; line-height: 1.55; }
+    .bullet { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .b-gold   { background: #f59e0b; }
+    .b-green  { background: #10b981; }
+    .b-red    { background: #ef4444; }
+    .b-blue   { background: #3b82f6; }
+    .b-purple { background: #8b5cf6; }
+    .b-orange { background: #f97316; }
+
+    /* ── FACT ITEMS ── */
+    .fact-item { display: flex; gap: 14px; margin-bottom: 20px; align-items: flex-start; }
+    .fact-item:last-child { margin-bottom: 0; }
+    .fact-number {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--dark);
+      color: #f59e0b;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .fact-content { flex: 1; }
+    .fact-stat { font-size: 13.5px; font-weight: 600; color: var(--dark); margin-bottom: 6px; line-height: 1.45; }
+    .fact-interp {
+      background: var(--green-light);
+      border-left: 3px solid #22c55e;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+      color: #14532d;
+      line-height: 1.55;
+    }
+    .fact-interp::before { content: 'Insight: '; font-weight: 700; }
+
+    /* ── DIVIDER ── */
+    .sep { height: 1px; background: var(--border); margin: 16px 0; }
+
+    /* ── FOOTER ── */
+    .footer { text-align: center; padding: 32px 16px; font-size: 11px; color: var(--light); }
+    .footer strong { color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .kpi-grid        { grid-template-columns: 1fr 1fr; }
+      .hook-banner     { padding: 20px 16px; }
+      .hook-banner p   { font-size: 13px; }
+      .header          { padding: 36px 16px 28px; }
+      .section-body    { padding: 16px; }
+      .compare-table   { font-size: 12px; }
+    }
+    @media (max-width: 420px) {
+      .kpi-grid        { grid-template-columns: 1fr; }
+      .compare-table thead { display: none; }
+    }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      @page { size: auto; margin: 8mm 10mm; }
+      body {
+        background: #f8fafc !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        font-size: 13px;
+      }
+      .wrapper { max-width: 100% !important; padding: 0 0 24px !important; }
+      .section-body { padding: 16px 14px !important; }
+      .kpi-grid    { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+      .hook-banner  { background: #0f172a !important; border-bottom: 3px solid #f59e0b !important; }
+      .header       { background: linear-gradient(135deg, #0f172a 0%, #1a3a6e 50%, #0f172a 100%) !important; }
+      .sh-gold      { background: linear-gradient(90deg, #fffbeb, #fef3c7) !important; }
+      .sh-green     { background: linear-gradient(90deg, #f0fdf4, #dcfce7) !important; }
+      .sh-red       { background: linear-gradient(90deg, #fef2f2, #fee2e2) !important; }
+      .sh-blue      { background: linear-gradient(90deg, #eff6ff, #dbeafe) !important; }
+      .sh-purple    { background: linear-gradient(90deg, #f5f3ff, #ede9fe) !important; }
+      .sh-dark      { background: linear-gradient(90deg, #0f172a, #1e293b) !important; }
+      .sh-dark h2   { color: #f1f5f9 !important; }
+      .sh-orange    { background: linear-gradient(90deg, #fff7ed, #fed7aa) !important; }
+      .sh-teal      { background: linear-gradient(90deg, #f0fdfa, #ccfbf1) !important; }
+      .topic-card   { background: linear-gradient(135deg, #0f172a, #1a3a6e, #0f172a) !important; }
+      .quote-item   { background: linear-gradient(135deg, #0f172a, #1a3a6e) !important; }
+      .preview-card { background: linear-gradient(135deg, #0f172a, #1e293b) !important; }
+      .code-block   { background: #0f172a !important; }
+      .transition-card { background: linear-gradient(135deg, #f5f3ff, #ede9fe) !important; }
+      .fn-card      { background: linear-gradient(135deg, #eff6ff, #dbeafe) !important; }
+      .section, .kpi-card, .fact-item, .quote-item, .audit-flag, .insight-card,
+      .fn-card, .transition-card, .preview-card, .scenario-body { page-break-inside: avoid; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════ HOOK BANNER ════════════════════════════════════ -->
+<div class="hook-banner">
+  <p>Your VLOOKUP just broke because someone inserted a column. <strong>Again.</strong> Meanwhile, the month-end is in two days and Finance is chasing you for the AP reconciliation. There is a better formula — and it has been sitting in your Excel since 2019.</p>
+</div>
+
+<!-- ════════════════════════════════════ HEADER ════════════════════════════════════ -->
+<div class="header">
+  <p class="header-tag">Daily Intelligence · Excel for Finance</p>
+  <h1>Excel Intelligence Brief</h1>
+  <p class="header-sub">For Finance Professionals · Chartered Accountants · Analysts</p>
+  <p class="header-edition">Edition #01 · April 7, 2026 · Topic: Reconciliation Workflows</p>
+  <div class="header-badges">
+    <span class="hbadge hbadge-blue">Month-End Ready</span>
+    <span class="hbadge hbadge-gold">Audit Safe</span>
+    <span class="hbadge hbadge-green">XLOOKUP Series</span>
+    <span class="hbadge hbadge-purple">No More Broken VLOOKUPs</span>
+  </div>
+</div>
+
+<div class="wrapper">
+
+  <!-- ═══════════════ SECTION 1 — TODAY'S EXCEL EDGE ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-gold">
+      <div class="section-icon">🟢</div>
+      <div>
+        <h2>Today's Excel Edge</h2>
+        <span class="section-sub">One technique. Real finance workflow. Immediate ROI.</span>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="topic-card">
+        <p class="topic-eyebrow">Main Insight · Edition 01</p>
+        <p class="topic-title">Replace VLOOKUP with XLOOKUP in Every Reconciliation File You Own</p>
+        <p class="topic-desc">XLOOKUP is not just a "newer VLOOKUP." It is a fundamentally more reliable lookup engine — one that does not break when your team restructures the GL extract columns every quarter. For AP/AR reconciliation, this distinction is the difference between a clean close and a 90-minute debugging session on the 31st.</p>
+      </div>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="col-old">❌ What Most People Do (The VLOOKUP Way)</th>
+            <th class="col-new">✅ What You Should Do Instead (XLOOKUP)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="t-strike">=VLOOKUP(A2, GL_Data!A:F, 4, 0)</span><br />
+              Hardcoded column number <strong>4</strong>. Works today. Breaks next month when Accounting adds a "Narration" column in position 3.
+            </td>
+            <td>
+              <strong>=XLOOKUP(A2, GL_Data!A:A, GL_Data!D:D, "Not Found")</strong><br />
+              References the <em>return column directly</em>. Immune to column insertions. Built-in "not found" handler. No more #N/A floods.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Searches only <strong>left-to-right</strong>. If your reference key is in column C and the amount is in column A, you need a workaround (INDEX-MATCH) or a column copy.
+            </td>
+            <td>
+              XLOOKUP searches <strong>in any direction</strong> — left, right, even last-to-first. Match your vendor code in column E and pull the amount from column B without restructuring your source data.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Returns only the <strong>first match</strong>. In a vendor ledger with multiple entries for the same vendor, you get the wrong invoice row silently — no error, wrong number, signed off.
+            </td>
+            <td>
+              XLOOKUP supports a <strong>match mode</strong> argument. Use <code>match_mode = -1</code> (next smaller) or <code>1</code> (next larger) for approximate matching on date ranges, or <code>2</code> for wildcard matching on partial vendor names.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="code-block">
+<span class="cmt">-- AP Reconciliation: Match Invoice Numbers from Bank Statement to GL --</span>
+
+<span class="cmt">-- Old Way (VLOOKUP — breaks if column order changes) --</span>
+<span class="t-strike" style="color:#94a3b8;">=VLOOKUP(B2, Ledger!A:G, 5, 0)</span>
+
+<span class="cmt">-- New Way (XLOOKUP — references columns by name/range, never by position) --</span>
+=<span class="fn">XLOOKUP</span>(<span class="arg">B2</span>, <span class="arg">Ledger!$A:$A</span>, <span class="arg">Ledger!$E:$E</span>, <span class="str">"⚠ Not in GL"</span>, <span class="arg">0</span>)
+<span class="cmt">                 ↑              ↑ lookup array    ↑ return array     ↑ if not found  ↑ exact match</span>
+<span class="cmt">              lookup value</span>
+
+<span class="cmt">-- Power Move: Return multiple columns in one formula (Excel 365 / 2021+) --</span>
+=<span class="fn">XLOOKUP</span>(<span class="arg">B2</span>, <span class="arg">Ledger!$A:$A</span>, <span class="arg">Ledger!$C:$E</span>, <span class="str">"Not Found"</span>)
+<span class="cmt">   Returns Vendor Name, Invoice Date, Amount — all three columns at once. Spills automatically.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 2 — KPI SNAPSHOT ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-blue">
+      <div class="section-icon">📊</div>
+      <div>
+        <h2>KPI Snapshot</h2>
+        <span class="section-sub">The business case for switching — in accounting terms.</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="kpi-grid">
+
+        <div class="kpi-card">
+          <div class="kpi-label">Time Saved</div>
+          <div class="kpi-number-row">
+            <div class="kpi-value">3–5 hrs</div>
+            <span class="kpi-tag kpi-tag-green">Per Week</span>
+          </div>
+          <div class="kpi-insight">Eliminated across formula debugging, column-fix firefights, and #N/A investigations during close cycles.</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Error Reduction</div>
+          <div class="kpi-number-row">
+            <div class="kpi-value">High</div>
+            <span class="kpi-tag kpi-tag-red">Risk ↓</span>
+          </div>
+          <div class="kpi-insight">Eliminates silent wrong-column errors — the kind that pass through review because there's no #N/A, just a wrong number.</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Process Efficiency</div>
+          <div class="kpi-number-row">
+            <div class="kpi-value">↑ 40%</div>
+            <span class="kpi-tag kpi-tag-blue">Closing</span>
+          </div>
+          <div class="kpi-insight">Reconciliation steps that needed 3 formulas (VLOOKUP + IFERROR + column copy) collapse into <strong>one XLOOKUP</strong>.</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Audit Risk Reduction</div>
+          <div class="kpi-number-row">
+            <div class="kpi-value">Sig.</div>
+            <span class="kpi-tag kpi-tag-gold">Audit</span>
+          </div>
+          <div class="kpi-insight">Built-in "not found" text means every unmatched item is <strong>flagged visibly</strong> — not silently misbound to a wrong row.</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">CFO Confidence Index</div>
+          <div class="kpi-number-row">
+            <div class="kpi-value">↑↑</div>
+            <span class="kpi-tag kpi-tag-purple">Reporting</span>
+          </div>
+          <div class="kpi-insight">When the reconciliation file is robust enough to survive a column insertion, you stop presenting numbers with caveats.</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-label">Formula Complexity</div>
+          <div class="kpi-number-row">
+            <div class="kpi-value">↓ 60%</div>
+            <span class="kpi-tag kpi-tag-orange">Simplicity</span>
+          </div>
+          <div class="kpi-insight">Wrapping VLOOKUP in IFERROR, TRIM, and helper columns disappears. One XLOOKUP handles all of it natively.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 3 — FUNCTION OF THE DAY ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-blue">
+      <div class="section-icon">⚙️</div>
+      <div>
+        <h2>Function of the Day</h2>
+        <span class="section-sub">Not what it does. Where you use it in real finance work.</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="fn-card">
+        <p class="fn-eyebrow">Excel Function · Lookup &amp; Reference</p>
+        <p class="fn-name">XLOOKUP</p>
+        <p class="fn-subtitle">Available in Excel 365, Excel 2021+, and Excel for Web</p>
+        <p class="fn-body">
+          XLOOKUP separates the <em>search range</em> from the <em>return range</em>. That one design decision eliminates an entire category of errors that finance teams have lived with for 30 years.
+        </p>
+      </div>
+
+      <p style="font-size:13px; color:var(--secondary); margin-bottom:14px; line-height:1.6;">
+        <strong>Why it matters for finance professionals specifically:</strong>
+      </p>
+
+      <ul class="bullet-list" style="margin-bottom:16px;">
+        <li><span class="bullet b-blue"></span><span><strong>AP Matching:</strong> Match invoice numbers from your bank feed to the AP ledger — even when the AP export columns shift every month after system updates.</span></li>
+        <li><span class="bullet b-green"></span><strong>AR Aging:</strong> Pull customer credit terms from a master list into your aging report. XLOOKUP handles "Customer Not Found" gracefully so you know immediately which new accounts need setup.</span></li>
+        <li><span class="bullet b-gold"></span><span><strong>Payroll Reconciliation:</strong> Match employee IDs from payroll software export to the HR master list. The reverse-search mode (<code>search_mode = -1</code>) finds the most recent record per employee — critical when employees have rejoined.</span></li>
+        <li><span class="bullet b-purple"></span><span><strong>Budget vs Actuals:</strong> Pull the budget figure for each GL account from a separate Budget tab — without caring about what column the "Budget Amount" sits in this month.</span></li>
+      </ul>
+
+      <div class="code-block">
+<span class="cmt">-- Syntax (plain English) --</span>
+=<span class="fn">XLOOKUP</span>(<span class="arg">what_to_find</span>, <span class="arg">where_to_search</span>, <span class="arg">what_to_return</span>, <span class="arg">[if_not_found]</span>, <span class="arg">[match_mode]</span>, <span class="arg">[search_mode]</span>)
+
+<span class="cmt">-- Finance-ready cheat card --</span>
+<span class="cmt">  match_mode 0  = exact match (reconciliation, invoice matching)</span>
+<span class="cmt">  match_mode -1 = next smaller (date-range lookups, aging buckets)</span>
+<span class="cmt">  match_mode 2  = wildcard (partial vendor name matching)</span>
+<span class="cmt">  search_mode -1 = last-to-first (get LATEST entry per GL code)</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 4 — REAL-LIFE FINANCE USE CASE ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-green">
+      <div class="section-icon">🧾</div>
+      <div>
+        <h2>Real-Life Finance Use Case</h2>
+        <span class="section-sub">Month-end AP vs GL reconciliation — a scene every accountant knows.</span>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="scenario-header">Scenario: Month-End AP Reconciliation · Accounts Payable Team</div>
+      <div class="scenario-body">
+        <p style="font-size:13px; color:var(--secondary); line-height:1.7; margin-bottom:14px;">
+          It is the 30th. You have two extracts open: the <strong>AP Ledger</strong> (from your ERP — 1,200 rows) and the <strong>Bank Statement</strong> (847 transactions). You need to identify which ERP invoices have been paid and which outstanding items need a provision. The ERP export came with columns in a different order than last month. Your VLOOKUP column number is now pointing at the wrong field.
+        </p>
+
+        <div class="scenario-step">
+          <div class="step-num">1</div>
+          <div class="step-text">In Column F of your Bank Statement sheet, add: <code>=XLOOKUP(A2, APLedger!$B:$B, APLedger!$F:$F, "⚠ Not in Ledger")</code>. This pulls the <strong>invoice amount from the AP Ledger</strong> by matching the invoice reference — regardless of what column F currently is.</div>
+        </div>
+        <div class="scenario-step">
+          <div class="step-num">2</div>
+          <div class="step-text">In Column G, calculate the variance: <code>=E2 - F2</code>. Any non-zero variance is an <strong>immediate reconciliation item</strong>. No manual scanning needed.</div>
+        </div>
+        <div class="scenario-step">
+          <div class="step-num">3</div>
+          <div class="step-text">Filter Column F for <strong>"⚠ Not in Ledger"</strong>. These are bank payments with no matching ERP invoice. Flag for your AP team — possible duplicates, advance payments, or missing entries.</div>
+        </div>
+        <div class="scenario-step">
+          <div class="step-num">4</div>
+          <div class="step-text">The whole reconciliation is now <strong>self-updating</strong>. Paste next month's bank statement and ERP extract. The XLOOKUP re-runs automatically. No formula rework. No column-number investigation.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; padding:12px 16px; background:var(--green-light); border-left:3px solid #22c55e; border-radius:0 8px 8px 0; font-size:12.5px; color:#14532d; line-height:1.6;">
+        <strong>Closing Note:</strong> This same structure works for any two-ledger reconciliation — GL vs Sub-Ledger, Payroll vs HR master, Intercompany vs Counterparty. The pattern is always: lookup key → XLOOKUP → variance → filter exceptions.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 5 — COMMON MISTAKE / AUDIT FLAG ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-red">
+      <div class="section-icon">🚨</div>
+      <div>
+        <h2>Common Mistake / Audit Flag</h2>
+        <span class="section-sub">The error that doesn't show — until the auditor does.</span>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="audit-flag">
+        <div class="audit-flag-title">⚑ Audit Flag · Classification: High Risk</div>
+        <div class="audit-flag-body">
+          <strong>The Silent Wrong-Column Error.</strong><br /><br />
+          You use <code>=VLOOKUP(A2, Data!A:H, 4, 0)</code>. It returns a number. No error. Looks correct. Gets signed off.<br /><br />
+          But column 4 used to be <em>Invoice Amount</em>. After your ERP team added a <em>Currency Code</em> column in position 3 last week, column 4 is now <em>Tax Amount</em>.<br /><br />
+          Your reconciliation file has been pulling <strong>tax amounts into the "Invoice Total" column</strong> for 11 days. The numbers looked plausible. No one noticed. The provision schedule is now wrong.
+        </div>
+        <div class="risk-badges">
+          <span class="risk-badge rb-red">Misstatement Risk</span>
+          <span class="risk-badge rb-orange">Provision Error</span>
+          <span class="risk-badge rb-gold">Close Delay Risk</span>
+        </div>
+      </div>
+
+      <div class="audit-flag" style="background:var(--orange-light); border-color:var(--orange-border); border-left-color:var(--orange);">
+        <div class="audit-flag-title" style="color:var(--orange);">⚑ Secondary Mistake · Classification: Medium</div>
+        <div class="audit-flag-body" style="color:#7c2d12;">
+          <strong>Forgetting the IFERROR wrapper on reconciliation LookUps.</strong><br /><br />
+          A raw <code>=VLOOKUP()</code> or <code>=XLOOKUP()</code> without the "not found" argument returns <strong>#N/A</strong> for unmatched rows. If you then SUM a column containing #N/A, the total itself returns #N/A. Your month-end balance figure shows #N/A instead of a number. The CFO sees this on screen share. You die a little inside.<br /><br />
+          XLOOKUP's built-in <code>[if_not_found]</code> argument — set it to <code>"⚠ Missing"</code> or <code>0</code> — prevents this entirely. No IFERROR wrapper required.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 6 — EXCEL FUN FACT (ACCOUNTANT'S CORNER) ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-dark">
+      <div class="section-icon">💡</div>
+      <div>
+        <h2>The Accountant's Corner</h2>
+        <span class="section-sub">Sharp observations. Finance-grade humour.</span>
+      </div>
+    </div>
+    <div class="section-body">
+
+      <div class="quote-item">
+        <p class="quote-text">"VLOOKUP is like a junior associate who only knows how to walk forward, only checks one specific locker number, and confidently hands you the wrong file if someone rearranged the shelves. XLOOKUP knows all the lockers by name."</p>
+        <p class="quote-attribution">— Excel Audit Insight #1 · Lookup Wisdom</p>
+      </div>
+
+      <div class="quote-item">
+        <p class="quote-text">"Most reconciliation errors are not calculation errors. They are <em>structure</em> errors. The formula was correct — on the day it was built. Then someone changed the source data layout and nobody updated the formula. Hardcoded column numbers are a liability, not a convenience."</p>
+        <p class="quote-attribution">— Excel Audit Insight #2 · Structure Over Calculation</p>
+      </div>
+
+      <div class="quote-item">
+        <p class="quote-text">"XLOOKUP's <code>search_mode = -1</code> searches from the last row upward — which means you can ask it: 'What is the most recent transaction for Vendor X?' without sorting your data. In an accounts payable context, that is not a fun-fact. That is genuinely useful."</p>
+        <p class="quote-attribution">— Excel Audit Insight #3 · Reverse Search Mode</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 7 — FROM EXCEL TO INSIGHT ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-purple">
+      <div class="section-icon">📈</div>
+      <div>
+        <h2>From Excel to Insight</h2>
+        <span class="section-sub">Where this logic lives beyond the spreadsheet.</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="transition-card">
+        <p class="transition-eyebrow">Excel → Power Query → Power BI</p>
+        <p class="transition-body">
+          The XLOOKUP pattern — <em>match a key, return a value from a separate table, handle mismatches explicitly</em> — is exactly what <strong>relationships</strong> in Power BI's data model replicate at scale. When you graduate from XLOOKUP-based reconciliation to a Power Query merge, you take the same logic, apply it to millions of rows, and get a refreshable, auditable pipeline instead of a static file.<br /><br />
+          If your XLOOKUP reconciliation runs clean every month, it is a strong signal that your underlying data is structured well enough to model in Power BI. The discipline is the same. The scale is different.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ SECTION 8 — TOMORROW'S PREVIEW ═══════════════ -->
+  <div class="section">
+    <div class="section-header sh-dark">
+      <div class="section-icon">🎯</div>
+      <div>
+        <h2>Tomorrow's Preview</h2>
+        <span class="section-sub">Next topic dropping in 24 hours.</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="preview-card">
+        <p class="preview-label">Edition #02 · Coming Tomorrow</p>
+        <p class="preview-title">SUMIFS-Based Variance Bridge: Automate Your Actual vs Budget Analysis</p>
+        <p class="preview-desc">
+          Every month-end, finance teams spend 2–3 hours building the "Actual vs Budget vs Prior Year" bridge manually — pulling figures from different sheets, cross-checking GL account codes, and formatting for management review. Tomorrow: how to build a dynamic variance report using SUMIFS and named ranges that updates in under 10 seconds when the actuals file drops.
+        </p>
+        <span class="preview-tag">Theme: Month-End Reporting</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <div class="footer">
+    <p><strong>Excel Intelligence Brief</strong> — For Finance Professionals</p>
+    <p style="margin-top:4px;">Built for CAs · Accountants · FP&amp;A Analysts · Controllers</p>
+    <p style="margin-top:8px; font-size:10.5px; color:#cbd5e1;">
+      Audit Rule #1: If your formula breaks when the source changes, it was never really working.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

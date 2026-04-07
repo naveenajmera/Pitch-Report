@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 632 135" role="img" aria-label="Paytience logo">
+
+  <defs>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="iq-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon -->
+  <g transform="translate(0,10)">
+    <circle cx="60" cy="60" r="50" fill="none" stroke="url(#accent)" stroke-width="6"/>
+    <polyline points="38,60 52,76 82,38" fill="none" stroke="url(#iq-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="76" y="68" width="10" height="22" rx="2" fill="#2563eb" opacity="0.6"/>
+    <rect x="89" y="58" width="10" height="32" rx="2" fill="#2563eb" opacity="0.75"/>
+    <rect x="102" y="46" width="10" height="44" rx="2" fill="#2563eb" opacity="0.9"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="142" y="85" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="96" font-weight="800" fill="url(#iq-grad)" letter-spacing="-2">Paytience</text>
+
+  <!-- Tagline -->
+  <text x="144" y="122" font-family="'Inter','Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="20" font-weight="500" fill="#64748b" letter-spacing="5.6">every number, accounted for.</text>
+
+</svg>

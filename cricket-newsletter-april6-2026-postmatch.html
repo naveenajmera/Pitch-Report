@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Pitch Report — Post-Match · KKR vs PBKS · April 6, 2026 · Rained Off</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:          #0f172a;
+      --charcoal:      #1e293b;
+      --secondary:     #334155;
+      --muted:         #64748b;
+      --light:         #94a3b8;
+      --border:        #e2e8f0;
+      --bg:            #f8fafc;
+      --white:         #ffffff;
+      --green:         #15803d;
+      --green-light:   #dcfce7;
+      --green-border:  #86efac;
+      --gold:          #b45309;
+      --gold-mid:      #f59e0b;
+      --gold-light:    #fffbeb;
+      --gold-border:   #fde68a;
+      --red:           #b91c1c;
+      --red-light:     #fef2f2;
+      --red-border:    #fca5a5;
+      --blue:          #1d4ed8;
+      --blue-light:    #dbeafe;
+      --purple:        #7c3aed;
+      --purple-light:  #ede9fe;
+      --orange:        #c2410c;
+      --orange-light:  #fff7ed;
+      --orange-border: #fed7aa;
+      --rain:          #0284c7;
+      --rain-light:    #e0f2fe;
+      --rain-border:   #7dd3fc;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--secondary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* ── HOOK BANNER ── */
+    .hook-banner {
+      background: var(--dark);
+      border-bottom: 3px solid var(--rain);
+      padding: 26px 32px;
+      text-align: center;
+    }
+    .hook-banner p {
+      color: rgba(255,255,255,0.88);
+      font-size: 14.5px;
+      line-height: 1.75;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .hook-banner strong { color: #7dd3fc; }
+    .hook-banner em { color: #fbbf24; font-style: normal; font-weight: 600; }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #0c1a2e 0%, #0f3460 50%, #0c1a2e 100%);
+      padding: 48px 32px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at center, rgba(2,132,199,0.12) 0%, transparent 70%);
+    }
+    .header-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #7dd3fc;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .header-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1px;
+      position: relative;
+    }
+    .header-badges {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .hbadge {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .hbadge-rain   { background: rgba(2,132,199,0.2);  color: #7dd3fc; border: 1px solid rgba(2,132,199,0.4); }
+    .hbadge-grey   { background: rgba(100,116,139,0.2); color: #cbd5e1; border: 1px solid rgba(100,116,139,0.3); }
+    .hbadge-gold   { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+
+    /* ── SECTIONS ── */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 20px;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .section-header {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      font-size: 16px;
+      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+    .section-body { padding: 20px 22px; }
+
+    .sh-rain   { background: linear-gradient(90deg, #e0f2fe, #bae6fd); }
+    .sh-rain   h2 { color: #075985; }
+    .sh-dark   { background: linear-gradient(90deg, #0f172a, #1e293b); }
+    .sh-dark   h2 { color: #f1f5f9; }
+    .sh-gold   { background: linear-gradient(90deg, #fffbeb, #fef3c7); }
+    .sh-gold   h2 { color: #92400e; }
+    .sh-red    { background: linear-gradient(90deg, #fef2f2, #fee2e2); }
+    .sh-red    h2 { color: #7f1d1d; }
+    .sh-green  { background: linear-gradient(90deg, #f0fdf4, #dcfce7); }
+    .sh-green  h2 { color: #14532d; }
+    .sh-blue   { background: linear-gradient(90deg, #eff6ff, #dbeafe); }
+    .sh-blue   h2 { color: #1e3a8a; }
+
+    /* ── RAIN RESULT CARD ── */
+    .rain-card {
+      background: linear-gradient(135deg, #0c2d48, #0369a1, #0c2d48);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .rain-drops {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 15% 20%, rgba(125,211,252,0.35) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 35% 55%, rgba(125,211,252,0.25) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 58% 15%, rgba(125,211,252,0.3)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 40%, rgba(125,211,252,0.2)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 88% 65%, rgba(125,211,252,0.3)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 25% 80%, rgba(125,211,252,0.2)  0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 65% 78%, rgba(125,211,252,0.25) 0%, transparent 100%);
+    }
+    .rain-result-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(125,211,252,0.7);
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .rain-emoji {
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .rain-result-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 800;
+      color: white;
+      margin-bottom: 8px;
+      position: relative;
+    }
+    .rain-result-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .rain-points {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .rain-point-pill {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 18px;
+      border-radius: 20px;
+    }
+    .rain-point-pill span { color: #7dd3fc; }
+
+    /* ── TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .tl-time {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      width: 54px;
+      flex-shrink: 0;
+      padding-top: 1px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .tl-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 18px;
+      flex-shrink: 0;
+    }
+    .tl-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .tl-line {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 4px;
+      min-height: 20px;
+    }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-dot-rain   { background: var(--rain); }
+    .tl-dot-gold   { background: var(--gold-mid); }
+    .tl-dot-green  { background: #22c55e; }
+    .tl-dot-red    { background: #ef4444; }
+    .tl-dot-grey   { background: var(--light); }
+    .tl-content { flex: 1; }
+    .tl-title { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+    .tl-note  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ── AI CONFESSION BOX ── */
+    .confession-card {
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      border-radius: 12px;
+      padding: 22px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .confession-card::before {
+      content: '🤖';
+      position: absolute;
+      right: 16px;
+      top: 12px;
+      font-size: 52px;
+      opacity: 0.12;
+    }
+    .confession-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 10px;
+    }
+    .confession-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .confession-body {
+      font-size: 13px;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.75;
+    }
+    .confession-body p { margin-bottom: 10px; }
+    .confession-body p:last-child { margin-bottom: 0; }
+    .confession-body strong { color: #c7d2fe; }
+    .confession-highlight {
+      background: rgba(165,180,252,0.15);
+      border-left: 3px solid #818cf8;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.6;
+      margin-top: 14px;
+      font-style: italic;
+    }
+
+    /* ── WHAT WE ANALYSED BOX ── */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    .analysis-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .analysis-box .strike { text-decoration: line-through; color: var(--light); }
+    .analysis-emoji { font-size: 24px; margin-bottom: 6px; }
+    .analysis-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+    .analysis-verdict {
+      font-size: 10.5px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .analysis-verdict.irrelevant { color: var(--red); font-weight: 600; }
+
+    /* ── BOYCOTT ── */
+    .boycott-item {
+      background: linear-gradient(135deg, var(--dark), #1e3a5f);
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 10px 10px 0;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .boycott-item:last-child { margin-bottom: 0; }
+    .boycott-item::before {
+      content: '"';
+      position: absolute;
+      top: 6px; right: 14px;
+      font-size: 60px;
+      color: rgba(245,158,11,0.15);
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+    }
+    .boycott-quote {
+      font-size: 13.5px;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.65;
+      margin-bottom: 8px;
+    }
+    .boycott-attribution {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #f59e0b;
+    }
+
+    /* ── STANDINGS UPDATE ── */
+    .standings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      border: 1px solid var(--border);
+      font-size: 12.5px;
+    }
+    .standings-row:last-child { margin-bottom: 0; }
+    .standings-row.highlight-rain { background: var(--rain-light); border-color: var(--rain-border); }
+    .standings-team { font-weight: 700; color: var(--dark); }
+    .standings-record { color: var(--muted); font-size: 12px; }
+    .standings-pts {
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--dark);
+    }
+    .pts-tag {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      margin-left: 6px;
+    }
+    .pts-new { background: var(--rain-light); color: #075985; border: 1px solid var(--rain-border); }
+
+    /* ── TOMORROW CHECKLIST ── */
+    .checklist { display: flex; flex-direction: column; gap: 10px; }
+    .check-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .check-item.done   { background: var(--green-light); border-color: var(--green-border); }
+    .check-item.todo   { background: var(--gold-light);  border-color: var(--gold-border); }
+    .check-item.new    { background: var(--rain-light);  border-color: var(--rain-border); }
+    .check-icon { font-size: 18px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+    .check-content { flex: 1; }
+    .check-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+    .check-note {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── FOOTER ── */
+    .footer { text-align: center; padding: 32px 16px; font-size: 11px; color: var(--light); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .analysis-grid  { grid-template-columns: 1fr 1fr; }
+      .hook-banner    { padding: 20px 16px; }
+      .hook-banner p  { font-size: 13px; }
+      .header         { padding: 36px 16px 28px; }
+      .section-body   { padding: 16px; }
+    }
+    @media (max-width: 420px) {
+      .analysis-grid  { grid-template-columns: 1fr; }
+    }
+
+    /* ── PRINT / PDF ── */
+    @media print {
+      @page { size: auto; margin: 8mm 10mm; }
+      body {
+        background: #f8fafc !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .wrapper        { max-width: 100% !important; padding: 0 0 24px !important; }
+      .section-body   { padding: 16px 14px !important; }
+      .analysis-grid  { grid-template-columns: 1fr 1fr 1fr !important; }
+      .hook-banner    { background: #0c1a2e !important; border-bottom: 3px solid #0284c7 !important; }
+      .header         { background: linear-gradient(135deg, #0c1a2e 0%, #0f3460 50%, #0c1a2e 100%) !important; }
+      .rain-card      { background: linear-gradient(135deg, #0c2d48, #0369a1, #0c2d48) !important; }
+      .confession-card { background: linear-gradient(135deg, #1e1b4b, #312e81) !important; }
+      .boycott-item   { background: linear-gradient(135deg, #0f172a, #1e3a5f) !important; }
+      .sh-rain        { background: linear-gradient(90deg, #e0f2fe, #bae6fd) !important; }
+      .sh-dark        { background: linear-gradient(90deg, #0f172a, #1e293b) !important; }
+      .sh-dark h2     { color: #f1f5f9 !important; }
+      .sh-gold        { background: linear-gradient(90deg, #fffbeb, #fef3c7) !important; }
+      .sh-red         { background: linear-gradient(90deg, #fef2f2, #fee2e2) !important; }
+      .sh-green       { background: linear-gradient(90deg, #f0fdf4, #dcfce7) !important; }
+      .sh-blue        { background: linear-gradient(90deg, #eff6ff, #dbeafe) !important; }
+      .section         { page-break-inside: avoid; break-inside: avoid; }
+      .boycott-item    { page-break-inside: avoid; break-inside: avoid; }
+      .confession-card { page-break-inside: avoid; break-inside: avoid; }
+      .check-item      { page-break-inside: avoid; break-inside: avoid; }
+      .tl-item         { page-break-inside: avoid; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════ HOOK BANNER ═══════ -->
+  <div class="hook-banner">
+    <p>We built a <strong>10-section pre-match brief</strong>. KKR batted. Arshdeep conceded 12 in the first over. Bartlett took two wickets in over two. KKR reached <em>25/2 in 3.4 overs</em>. Then the Kolkata sky looked at everything we&rsquo;d prepared and said: <em>no.</em> Rainfall data not consulted. Noted.</p>
+  </div>
+
+  <!-- ═══════ HEADER ═══════ -->
+  <div class="header">
+    <div class="header-tag">IPL 2026 &middot; Post-Match Report &middot; The One We Don&rsquo;t Talk About</div>
+    <h1>The Pitch Report</h1>
+    <div class="header-sub">Monday, April 6, 2026 &nbsp;&middot;&nbsp; KKR vs PBKS &nbsp;&middot;&nbsp; Eden Gardens &nbsp;&middot;&nbsp; Match 12</div>
+    <div class="header-badges">
+      <span class="hbadge hbadge-rain">&#9928;&#65039; Match Suspended</span>
+      <span class="hbadge hbadge-grey">No Result</span>
+      <span class="hbadge hbadge-gold">1 pt each</span>
+      <span class="hbadge hbadge-rain">AI Humbled: 1&ndash;0</span>
+    </div>
+  </div>
+
+  <div class="wrapper">
+
+    <!-- ═══════ 1. RAIN RESULT CARD ═══════ -->
+    <div class="section">
+      <div class="section-header sh-rain">
+        <div class="section-icon">&#9928;&#65039;</div>
+        <h2>Official Result</h2>
+      </div>
+      <div class="section-body">
+        <div class="rain-card">
+          <div class="rain-drops"></div>
+          <div class="rain-result-label">IPL 2026 &middot; Match 12 &middot; Eden Gardens, Kolkata</div>
+          <div class="rain-emoji">&#9928;&#65039;</div>
+          <div class="rain-result-title">Match Suspended &mdash; No Result</div>
+          <div class="rain-result-sub">KKR 25/2 (3.4 ov) &nbsp;&middot;&nbsp; April 6, 2026 &nbsp;&middot;&nbsp; Abandoned mid-over 4</div>
+          <div class="rain-points">
+            <div class="rain-point-pill">KKR &nbsp;<span>1 pt</span></div>
+            <div class="rain-point-pill">PBKS &nbsp;<span>1 pt</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ 2. MATCH TIMELINE ═══════ -->
+    <div class="section">
+      <div class="section-header sh-blue">
+        <div class="section-icon">&#128336;</div>
+        <h2>How the Evening Unfolded</h2>
+      </div>
+      <div class="section-body">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-time">Morning</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-green"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">AI publishes 10-section pre-match intelligence brief</div>
+              <div class="tl-note">KPIs calculated. Boycott quotes crafted. PBKS named narrow favourites. Toss impact modelled. Venue pitch visualised. Everything covered. Everything except whether it would rain at an outdoor cricket ground in April.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">Afternoon</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-gold"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">66,000 fans file into Eden Gardens</div>
+              <div class="tl-note">Popcorn purchased. Shreyas Iyer homecoming narrative trending. KKR fans nervously hopeful. PBKS fans confidently loud. Dark clouds noticed. No one says anything. This is cricket.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">6:30 PM</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-gold"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Toss &mdash; KKR win, elect to bat first</div>
+              <div class="tl-note">Ajinkya Rahane calls correctly. KKR choose to bat at home. The decision will later be described as &ldquo;entirely unresolved&rdquo; due to acts of precipitation. PBKS captain Shreyas Iyer shakes hands and prepares to field at his former ground.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">7:30 PM</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-green"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Over 1 (Arshdeep Singh) &mdash; KKR 12/0</div>
+              <div class="tl-note">Rahane and Allen open for KKR. Arshdeep's first over is mixed — Rahane drives through third man for 4, Allen gets a lucky inside edge to fine leg for another 4. Two boundaries, four singles. The Eden crowd finds its voice. The clouds politely wait their turn.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">~7:36 PM</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-red"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Over 2 (Xavier Bartlett) &mdash; Double-strike! KKR 16/2</div>
+              <div class="tl-note">Bartlett delivers one of those overs. Allen (6) edges to keeper Prabhsimran Singh in the 4th ball. Cameron Green (4) arrives, edges one to third man for a boundary on his first ball, then chips the very next delivery straight back to Prabhsimran. Two wickets. Two catches behind the stumps. KKR 16/2 after 2 overs — and PBKS are bowling with genuine intent.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">~7:42 PM</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-rain"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Overs 3&ndash;4 &mdash; Rahane &amp; Raghuvanshi. KKR 25/2.</div>
+              <div class="tl-note">Ajinkya Rahane (8*) and Angkrish Raghuvanshi (7*) rebuild calmly. Arshdeep keeps it tight in Over 3 — four singles, two dots. Bartlett returns in Over 4. Raghuvanshi drives for an audacious 5 to mid-off on the 3rd ball. On the very next delivery, the Kolkata sky renders an opinion.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">~7:47 PM</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-rain"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Rain stops play mid-over. Covers on. KKR 25/2 in 3.4 overs.</div>
+              <div class="tl-note">Heavy showers arrive over Eden Gardens. Covers deployed in under 90 seconds. The groundstaff are magnificent, as always. Duckworth-Lewis looks at the scorecard (minimum 5 overs required), looks at KKR&rsquo;s 3.4 overs, and declines to get involved. Nothing to calculate here.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-time">9:45 PM</div>
+            <div class="tl-dot-col"><div class="tl-dot tl-dot-red"></div><div class="tl-line"></div></div>
+            <div class="tl-content">
+              <div class="tl-title">Match officially abandoned. No result. 1 pt each.</div>
+              <div class="tl-note">After two hours, the umpires call it off. Both teams share 1 point. Shreyas Iyer&rsquo;s Eden homecoming as PBKS captain is postponed to a future fixture. Rahane finishes 8 not out &mdash; technically the top-scorer of a match that decided nothing. The rain takes a bow.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ 3. AI CONFESSION ═══════ -->
+    <div class="section">
+      <div class="section-header sh-dark">
+        <div class="section-icon">&#129300;</div>
+        <h2>AI Mea Culpa &mdash; A Public Confession</h2>
+      </div>
+      <div class="section-body">
+        <div class="confession-card">
+          <div class="confession-eyebrow">Filed under: Things I Should Have Checked</div>
+          <div class="confession-title">I Analysed 47 Variables. 3.4 Overs Happened. The 48th Variable Was Weather.</div>
+          <div class="confession-body">
+            <p>This morning I published a <strong>10-section pre-match intelligence brief</strong>. I modelled batting depth. I visualised economy rates. I calculated KKR's probability of structural collapse under pressure. I wrote three Geoffrey Boycott quotes. I cross-referenced Shreyas Iyer's personal relationship with Eden Gardens going back to 2022.</p>
+            <p>I did not once open a weather app. Not even by accident. Not a glance. Not a precautionary footnote. I walked past a perfectly functional meteorological data source and said, effectively, <strong>"irrelevant."</strong></p>
+            <p>It rained for two and a half hours. 3.4 overs happened — Bartlett took two wickets, Rahane finished 8 not out, Raghuvanshi hit an audacious 5 off the last ball that mattered. Both teams got 1 point. My entire analysis — Boycott quotes and all — contributed roughly as much to this result as the Duckworth-Lewis Method on a 3-over game where the minimum hasn&rsquo;t been met.</p>
+          </div>
+          <div class="confession-highlight">
+            &#128161; Starting tomorrow: Section 0 of every pre-match brief will be called <strong>&ldquo;Weather Report.&rdquo;</strong> It will appear before the fixture card, before the KPI dashboard, and before any Geoffrey Boycott quote. Rainfall probability will be treated as a KPI. The clouds will be respected.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ 4. THE WORK WE DID (WASTED) ═══════ -->
+    <div class="section">
+      <div class="section-header sh-gold">
+        <div class="section-icon">&#128465;&#65039;</div>
+        <h2>In Loving Memory &mdash; The Analysis That Wasn&rsquo;t Needed</h2>
+      </div>
+      <div class="section-body">
+        <div style="font-size:12.5px; color:var(--muted); margin-bottom:16px; font-style:italic;">A tribute to all the work rendered beautifully, thoroughly, and entirely pointlessly.</div>
+        <div class="analysis-grid">
+          <div class="analysis-box">
+            <div class="analysis-emoji">&#128202;</div>
+            <div class="analysis-label"><span class="strike">6-Card KPI Dashboard</span></div>
+            <div class="analysis-verdict irrelevant">Never consulted</div>
+          </div>
+          <div class="analysis-box">
+            <div class="analysis-emoji">&#9878;&#65039;</div>
+            <div class="analysis-label"><span class="strike">Full SWOT for Both Teams</span></div>
+            <div class="analysis-verdict irrelevant">Both teams got 1 pt anyway</div>
+          </div>
+          <div class="analysis-box">
+            <div class="analysis-emoji">&#128293;</div>
+            <div class="analysis-label"><span class="strike">4-Metric H2H Bar Chart</span></div>
+            <div class="analysis-verdict irrelevant">Rain didn't check it</div>
+          </div>
+          <div class="analysis-box">
+            <div class="analysis-emoji">&#127775;</div>
+            <div class="analysis-label"><span class="strike">POTM Forecast: Shreyas Iyer</span></div>
+            <div class="analysis-verdict irrelevant">He didn't bat</div>
+          </div>
+          <div class="analysis-box">
+            <div class="analysis-emoji">&#127881;</div>
+            <div class="analysis-label"><span class="strike">3 Geoffrey Boycott Quotes</span></div>
+            <div class="analysis-verdict" style="color:var(--green);font-weight:600;">Still entertaining ✓</div>
+          </div>
+          <div class="analysis-box">
+            <div class="analysis-emoji">&#9928;&#65039;</div>
+            <div class="analysis-label">Weather Probability</div>
+            <div class="analysis-verdict" style="color:var(--blue);font-weight:600;">Not included. Noted.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ 5. BOYCOTT ON THE RAIN ═══════ -->
+    <div class="section">
+      <div class="section-header sh-dark">
+        <div class="section-icon">&#127881;</div>
+        <h2>Geoffrey Boycott on the Rain</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="boycott-item">
+          <div class="boycott-quote">&#8220;In my day, we played through rain. We played through sleet. We played through a hailstorm in 1974 that put three men in hospital and we still declared at tea. These lads see a bit of Kolkata drizzle and it's covers on, everyone go home. Absolute shambles.&#8221;</div>
+          <div class="boycott-attribution">— Geoffrey Boycott, fully lying about 1974</div>
+        </div>
+
+        <div class="boycott-item">
+          <div class="boycott-quote">&#8220;I find it extraordinary that a machine capable of calculating Cameron Green's strike rate against left-arm pace in the 12th over of a T20 could not find the time to look out of a window. I have a window. It works perfectly well. I use it every morning. It's free.&#8221;</div>
+          <div class="boycott-attribution">— Geoffrey Boycott, on AI weather blindness</div>
+        </div>
+
+        <div class="boycott-item">
+          <div class="boycott-quote">&#8220;Cameron Green faced two balls tonight. He hit the first one for four &mdash; off the outside edge, straight to third man, nothing intentional about it &mdash; and then edged the very next delivery to the wicketkeeper. At twenty-five crore rupees, that&rsquo;s twelve-and-a-half crore a ball. I&rsquo;ve watched England bat for forty years and I have never once seen someone spend that much money for so little contact with the middle of the bat.&#8221;</div>
+          <div class="boycott-attribution">— Geoffrey Boycott, still making it about Cameron Green</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════ 6. STANDINGS UPDATE ═══════ -->
+    <div class="section">
+      <div class="section-header sh-green">
+        <div class="section-icon">&#128203;</div>
+        <h2>IPL 2026 Standings Update</h2>
+      </div>
+      <div class="section-body">
+        <div style="font-size:12px; color:var(--muted); margin-bottom:14px;">After Match 12 &nbsp;&middot;&nbsp; Both KKR &amp; PBKS receive 1 point each</div>
+        <div class="standings-row highlight-rain"><span class="standings-team">PBKS &#9928;&#65039;</span><span class="standings-record">3P &nbsp;2W &ndash; 0L &ndash; 1NR</span><span class="standings-pts">5 pts <span class="pts-tag pts-new">+1 Rain</span></span></div>
+        <div class="standings-row"><span class="standings-team">RCB</span><span class="standings-record">2P &nbsp;2W &ndash; 0L</span><span class="standings-pts">4 pts</span></div>
+        <div class="standings-row"><span class="standings-team">DC</span><span class="standings-record">2P &nbsp;2W &ndash; 0L</span><span class="standings-pts">4 pts</span></div>
+        <div class="standings-row"><span class="standings-team">RR</span><span class="standings-record">2P &nbsp;2W &ndash; 0L</span><span class="standings-pts">4 pts</span></div>
+        <div class="standings-row"><span class="standings-team">MI</span><span class="standings-record">2P &nbsp;1W &ndash; 1L</span><span class="standings-pts">2 pts</span></div>
+        <div class="standings-row"><span class="standings-team">LSG</span><span class="standings-record">2P &nbsp;1W &ndash; 1L</span><span class="standings-pts">2 pts</span></div>
+        <div class="standings-row"><span class="standings-team">SRH</span><span class="standings-record">3P &nbsp;1W &ndash; 2L</span><span class="standings-pts">2 pts</span></div>
+        <div class="standings-row highlight-rain"><span class="standings-team">KKR &#9928;&#65039;</span><span class="standings-record">3P &nbsp;0W &ndash; 2L &ndash; 1NR</span><span class="standings-pts">1 pt <span class="pts-tag pts-new">+1 Rain</span></span></div>
+        <div class="standings-row"><span class="standings-team">GT</span><span class="standings-record">2P &nbsp;0W &ndash; 2L</span><span class="standings-pts">0 pts</span></div>
+        <div class="standings-row"><span class="standings-team">CSK</span><span class="standings-record">3P &nbsp;0W &ndash; 3L</span><span class="standings-pts">0 pts</span></div>
+
+        <div style="margin-top:14px; background:var(--rain-light); border:1px solid var(--rain-border); border-radius:9px; padding:12px 14px; font-size:12.5px; color:#075985; line-height:1.6;">
+          <strong>What this changes:</strong> KKR escape 0&ndash;3 &mdash; mathematically still in it, though requiring significant improvement. PBKS remain the only side to have played 3 matches without a loss (5 pts) and hold a lead at the top. RCB, DC, and RR sit on 4 pts each from just 2 games &mdash; a tight three-way pack. Most glaring: CSK and GT are yet to open their accounts after 3 and 2 games respectively. The KKR vs PBKS storyline &mdash; Shreyas Iyer&rsquo;s Eden homecoming &mdash; is merely <em>postponed</em>, not cancelled.
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ 7. TOMORROW'S CHECKLIST ═══════ -->
+    <div class="section">
+      <div class="section-header sh-gold">
+        <div class="section-icon">&#9989;</div>
+        <h2>Tomorrow&rsquo;s Pre-Match Checklist &mdash; Revised Edition</h2>
+      </div>
+      <div class="section-body">
+        <div class="checklist">
+          <div class="check-item new">
+            <div class="check-icon">&#9928;&#65039;</div>
+            <div class="check-content">
+              <div class="check-title">Step 0 (NEW): Check the weather. Seriously.</div>
+              <div class="check-note">Open weather.com. Check rainfall probability for the venue city. If &gt;40% — add a rain disclaimer to every section. If &gt;70% — lead with it. This is now non-negotiable.</div>
+            </div>
+          </div>
+          <div class="check-item done">
+            <div class="check-icon">✅</div>
+            <div class="check-content">
+              <div class="check-title">Form Index — Who's hot, who's not</div>
+              <div class="check-note">As always. Still valid. Still useful. Assuming it doesn't rain.</div>
+            </div>
+          </div>
+          <div class="check-item done">
+            <div class="check-icon">✅</div>
+            <div class="check-content">
+              <div class="check-title">Venue scoring pattern and toss advantage</div>
+              <div class="check-note">This remains important. Eden will come back on the schedule. The data will still apply.</div>
+            </div>
+          </div>
+          <div class="check-item done">
+            <div class="check-icon">✅</div>
+            <div class="check-content">
+              <div class="check-title">Geoffrey Boycott quotes</div>
+              <div class="check-note">These are always relevant. Rain or shine. He'd have played through it.</div>
+            </div>
+          </div>
+          <div class="check-item todo">
+            <div class="check-icon">&#127381;</div>
+            <div class="check-content">
+              <div class="check-title">Tomorrow: CSK vs DC &mdash; Chennai &mdash; 7:30 PM IST</div>
+              <div class="check-note">CSK are 0&ndash;3. DC are 2&ndash;0. Sameer Rizvi walks into his home ground carrying the Orange Cap and a point to prove. CSK carry a structural problem with no fix in sight. This match has more riding on it than a simple 2-pointer. Pre-match brief incoming. With weather check.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <div class="footer">
+    The Pitch Report &nbsp;&middot;&nbsp; IPL 2026 Post-Match &nbsp;&middot;&nbsp; April 6, 2026 &nbsp;&middot;&nbsp; KKR vs PBKS &nbsp;&middot;&nbsp; No Result &nbsp;&middot;&nbsp; Weather: 1 &ndash; AI: 0
+  </div>
+
+</body>
+</html>

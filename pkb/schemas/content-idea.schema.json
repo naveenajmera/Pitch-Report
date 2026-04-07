@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "pkb/schemas/content-idea.schema.json",
+  "title": "Content Idea",
+  "description": "A structured content idea derived from digest items, research notes, or wiki pages. Maps to LinkedIn, YouTube, WhatsApp, training, or consulting use.",
+  "type": "object",
+  "required": ["id", "title", "topic", "platforms", "format", "hook", "status", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "examples": ["ci-2026-04-05-001", "ci-power-bi-direct-lake-writeback"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Working title for this content piece"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Topic ID from topics.json"
+    },
+    "subtopic": {
+      "type": "string"
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["linkedin", "youtube", "whatsapp", "newsletter", "training", "consulting", "twitter"]
+      },
+      "description": "Which platforms this idea is suited for"
+    },
+    "format": {
+      "type": "string",
+      "enum": ["post", "thread", "carousel", "video", "short-video", "newsletter", "workshop", "whitepaper", "case-study", "how-to"],
+      "description": "Content format"
+    },
+    "hook": {
+      "type": "string",
+      "description": "The opening line, angle, or provocative statement that makes this shareable",
+      "maxLength": 300
+    },
+    "insight": {
+      "type": "string",
+      "description": "The core insight or takeaway the audience leaves with"
+    },
+    "outline": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Section-by-section outline for longer formats"
+    },
+    "talking_points": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "3-7 concrete points to make in the content"
+    },
+    "target_audience": {
+      "type": "string",
+      "description": "Who this content is for",
+      "examples": ["Power BI developers", "CFOs in the UAE", "Dubai property investors", "Cricket fans on WhatsApp"]
+    },
+    "estimated_effort": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "low=<30min post; medium=1-2 hour video/carousel; high=workshop or whitepaper"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "1=highest priority, 5=low priority"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["idea", "drafted", "scheduled", "published", "archived"],
+      "description": "idea=just captured; drafted=content written; scheduled=in calendar; published=live; archived=dropped"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of digest items, notes, or stats that inspired this idea"
+    },
+    "wiki_ref": {
+      "type": ["string", "null"],
+      "description": "ID of the wiki page this content is based on"
+    },
+    "draft_location": {
+      "type": ["string", "null"],
+      "description": "File path or URL to actual drafted content",
+      "examples": ["drafts/linkedin-posts/direct-lake-writeback.md"]
+    },
+    "created_at":   { "type": "string", "format": "date" },
+    "scheduled_for": { "type": ["string", "null"], "format": "date" },
+    "published_at":  { "type": ["string", "null"], "format": "date" },
+    "published_url": { "type": ["string", "null"], "format": "uri" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "performance": {
+      "type": "object",
+      "description": "Post-publication metrics (optional, fill after publishing)",
+      "properties": {
+        "impressions":  { "type": "integer" },
+        "engagements":  { "type": "integer" },
+        "comments":     { "type": "integer" },
+        "shares":       { "type": "integer" },
+        "notes":        { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "pkb/schemas/stats-note.schema.json",
+  "title": "Statistics Note",
+  "description": "A single notable statistic or data point worth preserving — cricket scorecard, real estate transaction, finance KPI benchmark, etc.",
+  "type": "object",
+  "required": ["id", "topic", "metric_name", "value", "source", "date", "ingested_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "examples": ["stat-cricket-2026-04-05-001", "stat-dubai-re-q1-2026-001"]
+    },
+    "topic": {
+      "type": "string",
+      "description": "Topic ID from topics.json"
+    },
+    "subtopic": {
+      "type": "string",
+      "examples": ["test-cricket", "ipl", "dubai-villa-pricing", "dso-benchmarks"]
+    },
+    "metric_name": {
+      "type": "string",
+      "description": "Name of the metric being recorded",
+      "examples": ["Bowling average", "Median villa price per sqft", "Industry DSO benchmark"]
+    },
+    "value": {
+      "type": ["string", "number"],
+      "description": "The actual value — number, ratio, or descriptive string"
+    },
+    "unit": {
+      "type": "string",
+      "examples": ["days", "AED/sqft", "wickets", "runs", "%", "AED millions"]
+    },
+    "period": {
+      "type": "string",
+      "description": "Time period this stat applies to",
+      "examples": ["Q1 2026", "2026 IPL Season", "March 2026", "Test career through April 2026"]
+    },
+    "entity": {
+      "type": "object",
+      "description": "Who or what this stat describes",
+      "properties": {
+        "player":    { "type": ["string", "null"] },
+        "team":      { "type": ["string", "null"] },
+        "match":     { "type": ["string", "null"] },
+        "venue":     { "type": ["string", "null"] },
+        "company":   { "type": ["string", "null"] },
+        "community": { "type": ["string", "null"] },
+        "country":   { "type": ["string", "null"] }
+      }
+    },
+    "context": {
+      "type": "string",
+      "description": "1-2 sentences explaining what makes this stat interesting or how to read it"
+    },
+    "why_notable": {
+      "type": "string",
+      "description": "Why did this stat earn a dedicated record? Historical milestone? Surprising contrast? Benchmark setter?"
+    },
+    "comparison": {
+      "type": "string",
+      "description": "Optional: how this compares to an average, previous period, or record",
+      "examples": ["Industry average DSO is 45 days — this client is at 78 days", "Only second player to achieve this in IPL history"]
+    },
+    "source": {
+      "type": "object",
+      "required": ["name", "url"],
+      "properties": {
+        "name":              { "type": "string" },
+        "url":               { "type": "string", "format": "uri" },
+        "credibility_tier":  { "type": "integer", "minimum": 1, "maximum": 4 }
+      }
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the stat was recorded or published (not ingested)"
+    },
+    "ingested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "wiki_ref": {
+      "type": ["string", "null"],
+      "description": "ID of wiki page this stat belongs on"
+    },
+    "digest_ref": {
+      "type": ["string", "null"],
+      "description": "ID of digest item this was extracted from"
+    },
+    "content_use": {
+      "type": "boolean",
+      "description": "Flag if this stat is strong enough to anchor a content piece"
+    }
+  },
+  "examples": [
+    {
+      "id": "stat-cricket-2026-04-05-001",
+      "topic": "cricket",
+      "subtopic": "test-cricket",
+      "metric_name": "Test bowling average",
+      "value": 18.5,
+      "unit": "runs per wicket",
+      "period": "Test career through April 2026",
+      "entity": {
+        "player": "Jasprit Bumrah",
+        "team": "India"
+      },
+      "context": "Bumrah's bowling average dipped below 19 for the first time after the latest Test against Australia, placing him among the top 15 bowlers in Test history by this measure.",
+      "why_notable": "Historical threshold — sub-20 average for a pace bowler with 100+ wickets is exceedingly rare in the modern era.",
+      "comparison": "Matches the career average of Malcolm Marshall at the same wicket count milestone",
+      "source": {
+        "name": "ESPNcricinfo",
+        "url": "https://www.espncricinfo.com/ci/content/player/625383.html",
+        "credibility_tier": 1
+      },
+      "date": "2026-04-04",
+      "ingested_at": "2026-04-05T07:10:00Z",
+      "tags": ["bumrah", "india", "bowling-average", "test-cricket", "milestone"],
+      "wiki_ref": "wiki-cricket-fast-bowling-stats",
+      "digest_ref": "di-2026-04-05-003",
+      "content_use": true
+    }
+  ]
+}

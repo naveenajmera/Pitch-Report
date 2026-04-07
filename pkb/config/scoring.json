@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "comment": "All weights must sum to 1.0. Thresholds define routing decisions.",
+
+  "dimensions": {
+    "relevance": {
+      "weight": 0.25,
+      "description": "How directly this maps to my active interest areas and workflows",
+      "scale": {
+        "9-10": "Core topic I use daily (e.g. Fabric update, DSO formula, DLD data)",
+        "7-8": "Adjacent but impactful (e.g. Excel feature affecting PBI users)",
+        "5-6": "Loosely related domain (general cloud, general finance)",
+        "1-4": "Off-topic or tangential"
+      }
+    },
+    "practical_value": {
+      "weight": 0.20,
+      "description": "Can I apply this in client work or build something with it within 30 days?",
+      "scale": {
+        "9-10": "Changes my workflow or client deliverables immediately",
+        "7-8": "New technique worth incorporating soon",
+        "5-6": "Good to know, possibly useful later",
+        "1-4": "Purely theoretical or not actionable"
+      }
+    },
+    "novelty": {
+      "weight": 0.20,
+      "description": "Is this genuinely new information relative to the last 90 days?",
+      "scale": {
+        "9-10": "Brand new announcement, first-time insight, or breaking news",
+        "7-8": "New angle or updated data on existing topic",
+        "5-6": "Recap or synthesis of known material",
+        "1-4": "Rehash of well-known content"
+      }
+    },
+    "source_credibility": {
+      "weight": 0.20,
+      "description": "How authoritative and trustworthy is the source?",
+      "tiers": {
+        "tier_1": {
+          "score_range": "9-10",
+          "examples": ["blog.fabric.microsoft.com", "espncricinfo.com", "dubailand.gov.ae", "icc-cricket.com", "learn.microsoft.com", "github.blog"]
+        },
+        "tier_2": {
+          "score_range": "7-8",
+          "examples": ["sqlbi.com", "cbre.com", "bloomberg.com", "bayut.com", "wisden.com", "simonwillison.net", "cfo.com"]
+        },
+        "tier_3": {
+          "score_range": "5-6",
+          "examples": ["community.powerbi.com", "gulfnews.com", "arabianinvestor.com", "medium.com/trusted-authors"]
+        },
+        "tier_4": {
+          "score_range": "1-4",
+          "examples": ["Unknown blogs", "Unverified aggregators", "Content farms", "No byline/date"]
+        }
+      }
+    },
+    "content_potential": {
+      "weight": 0.15,
+      "description": "Could this become compelling published content for LinkedIn, YouTube, training, or consulting?",
+      "scale": {
+        "9-10": "Counterintuitive insight, story-driven data, how-to with visual potential",
+        "7-8": "Useful comparison, step-by-step tutorial, industry trend with an angle",
+        "5-6": "Background/reference or supporting material for a post",
+        "1-4": "Too niche, dry, or technical for general audience"
+      }
+    }
+  },
+
+  "composite_formula": "0.25*relevance + 0.20*practical_value + 0.20*novelty + 0.20*source_credibility + 0.15*content_potential",
+
+  "routing_thresholds": {
+    "daily_digest": {
+      "min_composite": 7.5,
+      "max_age_hours": 48,
+      "require_dedup_pass": true,
+      "comment": "High composite + fresh + not already seen"
+    },
+    "weekly_digest_only": {
+      "min_composite": 6.5,
+      "max_composite": 7.49,
+      "max_age_hours": 168,
+      "comment": "Good items that didn't make daily cut land in weekly digest"
+    },
+    "research_note": {
+      "min_composite": 6.5,
+      "min_practical_value": 8,
+      "min_article_length_words": 500,
+      "comment": "High practical value + substantial content warrants deep-dive"
+    },
+    "wiki_candidate": {
+      "digest_appearances": 3,
+      "manual_flag": true,
+      "contains_evergreen": true,
+      "comment": "Item cited 3+ times OR contains definition/formula/method that stays true"
+    },
+    "content_idea": {
+      "min_content_potential": 8,
+      "min_novelty": 7,
+      "comment": "High content potential + fresh angle = content idea queue"
+    }
+  },
+
+  "auto_reject": {
+    "tier_4_without_manual_approval": true,
+    "missing_publication_date": true,
+    "older_than_days": 14,
+    "duplicate_hash": true
+  }
+}

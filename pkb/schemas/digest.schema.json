@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "pkb/schemas/digest.schema.json",
+  "title": "Daily / Weekly Digest",
+  "description": "Top curated items for a given day or week, grouped by topic",
+  "type": "object",
+  "required": ["id", "type", "date", "items"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique digest ID",
+      "examples": ["digest-2026-04-05-daily", "digest-2026-W14-weekly"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["daily", "weekly"]
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date this digest covers"
+    },
+    "week": {
+      "type": "string",
+      "description": "ISO week reference e.g. 2026-W14",
+      "examples": ["2026-W14"]
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "curator_notes": {
+      "type": "string",
+      "description": "Optional human or AI note about this digest's overall theme"
+    },
+    "topics_covered": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of topic IDs that appear in this digest",
+      "examples": [["power-bi", "cricket", "finance-analytics"]]
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "topic", "headline", "summary", "url", "source_id", "scores"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique item ID within this digest",
+            "examples": ["di-2026-04-05-001"]
+          },
+          "topic": {
+            "type": "string",
+            "description": "Topic ID from topics.json",
+            "examples": ["power-bi"]
+          },
+          "subtopic": {
+            "type": "string",
+            "examples": ["dax", "semantic-models"]
+          },
+          "headline": {
+            "type": "string",
+            "description": "Verbatim or lightly edited headline",
+            "maxLength": 200
+          },
+          "one_liner": {
+            "type": "string",
+            "description": "Single sentence: what happened and why it matters",
+            "maxLength": 250
+          },
+          "summary": {
+            "type": "string",
+            "description": "2-3 sentence AI-curated summary of practical impact"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "source_id": {
+            "type": "string",
+            "description": "References id field in sources.json"
+          },
+          "source_name": {
+            "type": "string"
+          },
+          "source_tier": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "scores": {
+            "type": "object",
+            "required": ["relevance", "practical_value", "novelty", "source_credibility", "content_potential", "composite"],
+            "properties": {
+              "relevance":          { "type": "number", "minimum": 1, "maximum": 10 },
+              "practical_value":    { "type": "number", "minimum": 1, "maximum": 10 },
+              "novelty":            { "type": "number", "minimum": 1, "maximum": 10 },
+              "source_credibility": { "type": "number", "minimum": 1, "maximum": 10 },
+              "content_potential":  { "type": "number", "minimum": 1, "maximum": 10 },
+              "composite":          { "type": "number", "minimum": 1, "maximum": 10 }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "routing": {
+            "type": "object",
+            "properties": {
+              "research_note":   { "type": "boolean" },
+              "wiki_candidate":  { "type": "boolean" },
+              "content_idea":    { "type": "boolean" }
+            }
+          },
+          "wiki_ref": {
+            "type": ["string", "null"],
+            "description": "ID of linked wiki page if applicable"
+          },
+          "content_idea_ref": {
+            "type": ["string", "null"],
+            "description": "ID of generated content idea if applicable"
+          },
+          "hash": {
+            "type": "string",
+            "description": "SHA-256 of URL used for deduplication"
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "digest-2026-04-05-daily",
+      "type": "daily",
+      "date": "2026-04-05",
+      "week": "2026-W14",
+      "generated_at": "2026-04-05T07:00:00Z",
+      "curator_notes": "Major Fabric update dominates today. Cricket series under way.",
+      "topics_covered": ["power-bi", "cricket"],
+      "items": [
+        {
+          "id": "di-2026-04-05-001",
+          "topic": "power-bi",
+          "subtopic": "fabric",
+          "headline": "Microsoft Fabric now supports real-time XMLA write-back via Direct Lake",
+          "one_liner": "Fabric's Direct Lake mode now allows DAX writeback — this changes the semantic model building workflow for nearly all enterprise users.",
+          "summary": "Microsoft announced that Direct Lake now supports XMLA write-back, enabling developers to programmatically modify semantic models without switching modes. This removes a key friction point in enterprise Fabric deployments and opens the door to automation-first model management.",
+          "url": "https://blog.fabric.microsoft.com/en-us/blog/example",
+          "source_id": "fabric-blog",
+          "source_name": "Microsoft Fabric Blog",
+          "source_tier": 1,
+          "published_at": "2026-04-04T10:00:00Z",
+          "scores": {
+            "relevance": 10,
+            "practical_value": 9,
+            "novelty": 9,
+            "source_credibility": 10,
+            "content_potential": 8,
+            "composite": 9.35
+          },
+          "tags": ["direct-lake", "xmla", "semantic-model", "fabric", "writeback"],
+          "routing": {
+            "research_note": true,
+            "wiki_candidate": true,
+            "content_idea": true
+          },
+          "wiki_ref": "wiki-direct-lake-modes",
+          "content_idea_ref": "ci-2026-04-05-001",
+          "hash": "a3f9c2d1e8b7..."
+        }
+      ]
+    }
+  ]
+}

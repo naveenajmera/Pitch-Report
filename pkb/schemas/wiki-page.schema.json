@@ -1,0 +1,169 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "pkb/schemas/wiki-page.schema.json",
+  "title": "Wiki Page — Evergreen Knowledge Unit",
+  "description": "A stable, versioned knowledge page for concepts, methods, definitions, and frameworks that remain true over time",
+  "type": "object",
+  "required": ["id", "title", "topic", "status", "definition", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Slug-style unique ID",
+      "examples": ["wiki-dso-calculation", "wiki-direct-lake-modes", "wiki-dubai-service-charges"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Full readable title",
+      "examples": ["DSO: Days Sales Outstanding", "Direct Lake vs Import vs DirectQuery in Fabric"]
+    },
+    "topic": {
+      "type": "string",
+      "description": "Primary topic ID from topics.json"
+    },
+    "subtopic": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "needs-review", "deprecated"],
+      "description": "draft=being written; active=current and accurate; needs-review=flagged for update; deprecated=superseded"
+    },
+    "definition": {
+      "type": "string",
+      "description": "Concise 1-3 sentence definition of this concept. No fluff."
+    },
+    "why_it_matters": {
+      "type": "string",
+      "description": "Why this concept matters in practice for my work or clients"
+    },
+    "key_concepts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["concept", "explanation"],
+        "properties": {
+          "concept":     { "type": "string" },
+          "explanation": { "type": "string" }
+        }
+      }
+    },
+    "formulas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "expression"],
+        "properties": {
+          "name":       { "type": "string" },
+          "expression": { "type": "string", "description": "DAX, math notation, or pseudo-code" },
+          "notes":      { "type": "string" }
+        }
+      }
+    },
+    "best_practices": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Concrete, actionable rules I follow on this topic"
+    },
+    "common_mistakes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "practical_applications": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Real scenarios where I have applied or would apply this"
+    },
+    "related_pages": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of related wiki pages"
+    },
+    "digest_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of digest items that contributed to this page"
+    },
+    "note_refs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "IDs of deep-dive notes related to this page"
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["title", "url"],
+        "properties": {
+          "title": { "type": "string" },
+          "url":   { "type": "string", "format": "uri" },
+          "type":  { "type": "string", "enum": ["definition", "standard", "tutorial", "tool", "paper", "report"] }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date",
+      "description": "If older than 90 days and a related digest item arrives, flag for review"
+    }
+  },
+  "examples": [
+    {
+      "id": "wiki-dso-calculation",
+      "title": "DSO: Days Sales Outstanding",
+      "topic": "finance-analytics",
+      "subtopic": "accounts-receivable",
+      "status": "active",
+      "definition": "DSO measures the average number of days a company takes to collect payment after a sale. It is the primary KPI for Accounts Receivable efficiency.",
+      "why_it_matters": "CFOs use DSO to diagnose cash conversion lag and AR process health. A rising DSO signals collections risk or loose credit policy. It is the first metric I build in any AR dashboard.",
+      "key_concepts": [
+        { "concept": "Collection Period", "explanation": "The actual days between invoice date and payment receipt" },
+        { "concept": "Countback DSO", "explanation": "More accurate for seasonal businesses — works back from period-end AR through most recent invoices to match the AR balance" }
+      ],
+      "formulas": [
+        { "name": "Simple DSO", "expression": "DSO = (Accounts Receivable / Total Credit Sales) × Number of Days", "notes": "Use with caution for seasonal businesses" },
+        { "name": "Countback DSO (Best Practice)", "expression": "Work backward from AR balance through monthly sales until balance is exhausted — count the days consumed", "notes": "More accurate for variable revenue patterns" },
+        { "name": "DAX — Simple DSO", "expression": "DSO = DIVIDE([AR Balance], [Revenue Last 30 Days]) * 30", "notes": "Rolling 30-day version for Power BI" }
+      ],
+      "best_practices": [
+        "Always segment DSO by customer tier, region, and payment terms before aggregating",
+        "Use countback method for retail or seasonal clients",
+        "Build aging buckets (0-30, 31-60, 61-90, 90+) alongside DSO"
+      ],
+      "common_mistakes": [
+        "Using total sales (including cash) instead of credit sales in denominator",
+        "Mixing invoiced date vs shipped date inconsistently"
+      ],
+      "practical_applications": [
+        "AR Dashboard in Power BI: top KPI card with trend sparkline and monthly target line",
+        "CFO reporting pack: week-over-week DSO movement with drill-through by customer"
+      ],
+      "related_pages": ["wiki-ar-aging-analysis", "wiki-cash-flow-forecasting"],
+      "digest_refs": [],
+      "note_refs": [],
+      "external_refs": [
+        { "title": "AFP DSO Best Practices Guide", "url": "https://www.afponline.org", "type": "standard" }
+      ],
+      "tags": ["dso", "accounts-receivable", "kpi", "cash-flow", "power-bi"],
+      "version": 2,
+      "created_at": "2026-01-15",
+      "updated_at": "2026-04-01",
+      "last_reviewed": "2026-04-01"
+    }
+  ]
+}

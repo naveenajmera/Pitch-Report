@@ -1,0 +1,28 @@
+# Personal Knowledge Base — .gitignore
+
+# Environment / secrets — NEVER commit
+.env
+
+# Raw ingestion data (large, regeneratable)
+ingestion/raw/
+
+# Seen hashes cache (regeneratable)
+ingestion/seen_hashes.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+*.swp
+
+# Node (if you add a reader build step)
+node_modules/

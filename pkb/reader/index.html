@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PKB Reader</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #f8f9fa;
+    --surface:   #ffffff;
+    --border:    #e5e7eb;
+    --text:      #1a1a2e;
+    --muted:     #6b7280;
+    --accent:    #0078d4;
+    --green:     #107c10;
+    --gold:      #d4a017;
+    --red:       #c0392b;
+    --purple:    #8764b8;
+    --teal:      #00704a;
+    --radius:    8px;
+
+    /* topic colours */
+    --c-power-bi:         #f2c811;
+    --c-ai-agents:        #0078d4;
+    --c-finance:          #107c10;
+    --c-dubai-re:         #c0392b;
+    --c-markets:          #8764b8;
+    --c-cricket:          #00704a;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ────────────────────────────────────────── */
+  .shell { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .main {
+    flex: 1;
+    padding: 28px 32px;
+    max-width: 900px;
+  }
+
+  /* ── SIDEBAR ───────────────────────────────────────── */
+  .sidebar-logo {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .sidebar-logo span { color: var(--accent); }
+
+  .sidebar-section {
+    padding: 14px 20px 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-item:hover  { background: var(--bg); }
+  .nav-item.active { background: #edf4fc; border-left-color: var(--accent); font-weight: 600; }
+
+  .topic-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── HEADER ────────────────────────────────────────── */
+  .page-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-header h1 { font-size: 22px; font-weight: 700; }
+  .page-header p  { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+  /* ── DIGEST DATE PICKER ────────────────────────────── */
+  .digest-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .digest-controls label { font-size: 14px; font-weight: 500; }
+  .digest-controls input[type=date], .digest-controls select {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    background: var(--surface);
+  }
+  .btn {
+    padding: 7px 16px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .btn:hover { background: #006cbd; }
+  .btn-ghost {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { background: var(--bg); }
+
+  /* ── TOPIC FILTER CHIPS ────────────────────────────── */
+  .filter-chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .chip {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.65;
+    transition: opacity 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  .chip.active { opacity: 1; border-color: currentColor; }
+
+  /* ── DIGEST ITEM CARD ──────────────────────────────── */
+  .digest-grid { display: flex; flex-direction: column; gap: 14px; }
+
+  .item-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    transition: box-shadow 0.15s;
+    border-left: 4px solid var(--border);
+  }
+  .item-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+  .item-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .item-headline {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  .item-headline:hover { color: var(--accent); }
+
+  .score-badge {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .score-badge.high   { background: #e8f5ee; border-color: #a8d5b8; color: #1a6b3a; }
+  .score-badge.medium { background: #fdf8ec; border-color: #e8d080; color: #7a6000; }
+  .score-badge.low    { background: #fef2f2; border-color: #fca5a5; color: #991b1b; }
+
+  .item-one-liner {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .item-summary {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 10px;
+  }
+
+  .item-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .item-source { font-weight: 500; }
+  .tier-badge {
+    font-size: 11px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .tier-1 { background: #e8f5ee; color: #1a6b3a; }
+  .tier-2 { background: #edf4fc; color: #0059a3; }
+  .tier-3 { background: #f5f5f5; color: #555; }
+
+  .item-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .routing-flags { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .flag {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .flag-wiki    { background: #edf4fc; color: #004e8c; }
+  .flag-note    { background: #fdf8ec; color: #7a5c00; }
+  .flag-content { background: #f5edfc; color: #5c2d91; }
+
+  .score-bar-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .score-bar-label { width: 115px; flex-shrink: 0; }
+  .score-bar-track {
+    flex: 1;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .score-bar-fill { height: 100%; border-radius: 2px; background: var(--accent); }
+  .score-val { width: 20px; text-align: right; font-weight: 600; }
+
+  /* ── WIKI / NOTES LIST ─────────────────────────────── */
+  .list-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+  }
+  .list-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .list-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .list-card p  { font-size: 13px; color: var(--muted); }
+
+  /* ── EMPTY & STATUS ────────────────────────────────── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .empty-state h3 { font-size: 18px; margin-bottom: 8px; }
+  .loading { color: var(--muted); padding: 40px; text-align: center; }
+  .error   { color: var(--red);   padding: 20px; font-size: 14px; }
+
+  /* ── STATS TABLE ───────────────────────────────────── */
+  .stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .stats-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--bg);
+    border-bottom: 2px solid var(--border);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .stats-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .stats-table tr:hover td { background: var(--bg); }
+
+  /* ── RESPONSIVE ────────────────────────────────────── */
+  @media (max-width: 680px) {
+    .sidebar { display: none; }
+    .main { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">PKB <span>Reader</span></div>
+
+    <div class="sidebar-section">Navigation</div>
+    <div class="nav-item active" data-view="digest" onclick="switchView('digest', this)">📋 Digest</div>
+    <div class="nav-item" data-view="wiki"   onclick="switchView('wiki', this)">📖 Wiki</div>
+    <div class="nav-item" data-view="notes"  onclick="switchView('notes', this)">🔍 Research Notes</div>
+    <div class="nav-item" data-view="ideas"  onclick="switchView('ideas', this)">💡 Content Ideas</div>
+    <div class="nav-item" data-view="stats"  onclick="switchView('stats', this)">📊 Statistics</div>
+
+    <div class="sidebar-section">Topics</div>
+    <div class="nav-item" data-topic="all" onclick="filterTopic('all', this)">
+      <span class="topic-dot" style="background:#999"></span> All Topics
+    </div>
+    <div class="nav-item" data-topic="power-bi" onclick="filterTopic('power-bi', this)">
+      <span class="topic-dot" style="background:var(--c-power-bi)"></span> Power BI & Fabric
+    </div>
+    <div class="nav-item" data-topic="ai-agents" onclick="filterTopic('ai-agents', this)">
+      <span class="topic-dot" style="background:var(--c-ai-agents)"></span> AI Agents & Copilot
+    </div>
+    <div class="nav-item" data-topic="finance-analytics" onclick="filterTopic('finance-analytics', this)">
+      <span class="topic-dot" style="background:var(--c-finance)"></span> Finance Analytics
+    </div>
+    <div class="nav-item" data-topic="dubai-real-estate" onclick="filterTopic('dubai-real-estate', this)">
+      <span class="topic-dot" style="background:var(--c-dubai-re)"></span> Dubai Real Estate
+    </div>
+    <div class="nav-item" data-topic="markets-business" onclick="filterTopic('markets-business', this)">
+      <span class="topic-dot" style="background:var(--c-markets)"></span> Markets & Business
+    </div>
+    <div class="nav-item" data-topic="cricket" onclick="filterTopic('cricket', this)">
+      <span class="topic-dot" style="background:var(--c-cricket)"></span> Cricket
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- DIGEST VIEW -->
+    <div id="view-digest">
+      <div class="page-header">
+        <h1 id="digest-title">Daily Digest</h1>
+        <p id="digest-subtitle"></p>
+      </div>
+
+      <div class="digest-controls">
+        <label for="digest-date">Date:</label>
+        <input type="date" id="digest-date" />
+        <select id="digest-type">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+        </select>
+        <button class="btn" onclick="loadDigest()">Load</button>
+        <button class="btn btn-ghost" onclick="loadLatestDigest()">Latest</button>
+      </div>
+
+      <div id="digest-curator-notes" style="display:none; background:#fdf8ec; border:1px solid #e8d080; border-radius:8px; padding:12px 16px; margin-bottom:16px; font-size:14px; color:#7a5c00;"></div>
+
+      <div id="digest-content" class="loading">Select a date and click Load, or click Latest.</div>
+    </div>
+
+    <!-- WIKI VIEW -->
+    <div id="view-wiki" style="display:none">
+      <div class="page-header">
+        <h1>Wiki Knowledge Base</h1>
+        <p>Evergreen pages — definitions, methods, frameworks</p>
+      </div>
+      <div id="wiki-search-row" style="margin-bottom:16px">
+        <input type="text" id="wiki-search" placeholder="Search wiki pages…" oninput="filterWiki()"
+          style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;" />
+      </div>
+      <div id="wiki-content" class="loading">Loading wiki pages…</div>
+    </div>
+
+    <!-- NOTES VIEW -->
+    <div id="view-notes" style="display:none">
+      <div class="page-header">
+        <h1>Research Notes</h1>
+        <p>Deep-dive analyses and time-stamped investigations</p>
+      </div>
+      <div id="notes-content" class="loading">Loading notes…</div>
+    </div>
+
+    <!-- IDEAS VIEW -->
+    <div id="view-ideas" style="display:none">
+      <div class="page-header">
+        <h1>Content Ideas</h1>
+        <p>LinkedIn, YouTube, WhatsApp, training, and consulting opportunities</p>
+      </div>
+      <div style="margin-bottom:16px">
+        <select id="ideas-status-filter" onchange="filterIdeas()"
+          style="padding:6px 10px;border:1px solid var(--border);border-radius:8px;font-size:14px;">
+          <option value="all">All Statuses</option>
+          <option value="idea">Ideas</option>
+          <option value="drafted">Drafted</option>
+          <option value="scheduled">Scheduled</option>
+          <option value="published">Published</option>
+        </select>
+      </div>
+      <div id="ideas-content" class="loading">Loading content ideas…</div>
+    </div>
+
+    <!-- STATS VIEW -->
+    <div id="view-stats" style="display:none">
+      <div class="page-header">
+        <h1>Statistics Notes</h1>
+        <p>Notable data points — cricket, real estate, finance benchmarks</p>
+      </div>
+      <div id="stats-content" class="loading">Loading statistics…</div>
+    </div>
+  </main>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const state = {
+  view:        'digest',
+  topic:       'all',
+  digestData:  null,
+  wikiData:    [],
+  notesData:   [],
+  ideasData:   [],
+  statsData:   [],
+};
+
+// ── Topic metadata ────────────────────────────────────────────────────────────
+const TOPICS = {
+  'power-bi':          { label: 'Power BI & Fabric',    color: '#f2c811' },
+  'ai-agents':         { label: 'AI Agents & Copilot',  color: '#0078d4' },
+  'finance-analytics': { label: 'Finance Analytics',    color: '#107c10' },
+  'dubai-real-estate': { label: 'Dubai Real Estate',    color: '#c0392b' },
+  'markets-business':  { label: 'Markets & Business',   color: '#8764b8' },
+  'cricket':           { label: 'Cricket',              color: '#00704a' },
+};
+
+function topicColor(id) {
+  return TOPICS[id]?.color || '#999';
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function switchView(view, el) {
+  state.view = view;
+  document.querySelectorAll('.nav-item[data-view]').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  ['digest','wiki','notes','ideas','stats'].forEach(v => {
+    document.getElementById(`view-${v}`).style.display = v === view ? '' : 'none';
+  });
+
+  if (view === 'wiki'   && state.wikiData.length === 0)  loadWikiData();
+  if (view === 'notes'  && state.notesData.length === 0)  loadNotesData();
+  if (view === 'ideas'  && state.ideasData.length === 0)  loadIdeasData();
+  if (view === 'stats'  && state.statsData.length === 0)  loadStatsData();
+}
+
+function filterTopic(topic, el) {
+  state.topic = topic;
+  document.querySelectorAll('.nav-item[data-topic]').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  refreshCurrentView();
+}
+
+function refreshCurrentView() {
+  const v = state.view;
+  if (v === 'digest' && state.digestData) renderDigest(state.digestData);
+  if (v === 'wiki')   renderWikiList(state.wikiData);
+  if (v === 'notes')  renderNotesList(state.notesData);
+  if (v === 'ideas')  renderIdeasList(state.ideasData);
+  if (v === 'stats')  renderStatsList(state.statsData);
+}
+
+// ── File path helpers ─────────────────────────────────────────────────────────
+function digestPath(dateStr, type) {
+  const d = new Date(dateStr);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2,'0');
+  return `../digests/${y}/${m}/digest-${dateStr}-${type}.json`;
+}
+
+function scanDir(pattern) {
+  // Simple approach: try loading an index.json that lists available files.
+  // Fall back to a known test path. In production, generate an index via script.
+  return fetch('../digests/index.json')
+    .then(r => r.ok ? r.json() : { files: [] })
+    .catch(() => ({ files: [] }));
+}
+
+// ── Digest Loading ────────────────────────────────────────────────────────────
+async function loadLatestDigest() {
+  // Try today and walk back up to 7 days
+  const today = new Date();
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const ds = d.toISOString().split('T')[0];
+    const path = digestPath(ds, 'daily');
+    try {
+      const r = await fetch(path);
+      if (r.ok) {
+        const data = await r.json();
+        document.getElementById('digest-date').value = ds;
+        document.getElementById('digest-type').value = 'daily';
+        renderDigest(data);
+        return;
+      }
+    } catch(e) {}
+  }
+  document.getElementById('digest-content').innerHTML = '<div class="empty-state"><h3>No digests found</h3><p>Run <code>ingest.py</code> then <code>curate.py</code> then <code>digest.py</code> to generate your first digest.</p></div>';
+}
+
+async function loadDigest() {
+  const dateStr = document.getElementById('digest-date').value;
+  const type    = document.getElementById('digest-type').value;
+  if (!dateStr) { alert('Select a date'); return; }
+
+  document.getElementById('digest-content').innerHTML = '<div class="loading">Loading…</div>';
+  try {
+    const r = await fetch(digestPath(dateStr, type));
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data = await r.json();
+    renderDigest(data);
+  } catch(e) {
+    document.getElementById('digest-content').innerHTML = `<div class="error">Could not load digest for ${dateStr} (${type}). File may not exist yet.</div>`;
+  }
+}
+
+function renderDigest(data) {
+  state.digestData = data;
+  document.getElementById('digest-title').textContent = data.type === 'weekly'
+    ? `Weekly Digest — ${data.week}`
+    : `Daily Digest — ${data.date}`;
+  document.getElementById('digest-subtitle').textContent =
+    `${data.item_count || data.items?.length || 0} items · Topics: ${(data.topics_covered || []).join(', ')}`;
+
+  const notesEl = document.getElementById('digest-curator-notes');
+  if (data.curator_notes) {
+    notesEl.textContent = '📝 ' + data.curator_notes;
+    notesEl.style.display = '';
+  } else {
+    notesEl.style.display = 'none';
+  }
+
+  let items = (data.items || []).filter(i =>
+    state.topic === 'all' || i.topic === state.topic
+  );
+
+  if (items.length === 0) {
+    document.getElementById('digest-content').innerHTML = '<div class="empty-state"><h3>No items match this filter</h3></div>';
+    return;
+  }
+
+  document.getElementById('digest-content').innerHTML =
+    `<div class="digest-grid">${items.map(renderItemCard).join('')}</div>`;
+}
+
+function renderItemCard(item) {
+  const s = item.scores || {};
+  const c = s.composite || 0;
+  const scoreClass = c >= 8 ? 'high' : c >= 6.5 ? 'medium' : 'low';
+  const color = topicColor(item.topic);
+  const routeFlags = renderRoutingFlags(item.routing || {});
+  const tagHtml = (item.tags || []).slice(0,6).map(t => `<span class="tag">${t}</span>`).join('');
+  const tierLabel = ['','Tier 1 ✓','Tier 2','Tier 3','Tier 4'][item.source_tier || 3] || '';
+  const tierClass = `tier-${item.source_tier || 3}`;
+
+  const scores = [
+    ['Relevance',          s.relevance],
+    ['Practical Value',    s.practical_value],
+    ['Novelty',            s.novelty],
+    ['Source Credibility', s.source_credibility],
+    ['Content Potential',  s.content_potential],
+  ];
+
+  const scoreBars = scores.map(([label, val]) => {
+    if (!val) return '';
+    const pct = (val / 10) * 100;
+    return `<div class="score-bar-row">
+      <span class="score-bar-label">${label}</span>
+      <div class="score-bar-track"><div class="score-bar-fill" style="width:${pct}%"></div></div>
+      <span class="score-val">${val}</span>
+    </div>`;
+  }).join('');
+
+  const pubDate = item.published_at ? new Date(item.published_at).toLocaleDateString('en-GB', {day:'numeric',month:'short'}) : '';
+
+  return `
+  <div class="item-card" style="border-left-color:${color}">
+    <div class="item-card-header">
+      <a class="item-headline" href="${item.url}" target="_blank" rel="noopener">${esc(item.headline)}</a>
+      <span class="score-badge ${scoreClass}">${c.toFixed(1)}</span>
+    </div>
+    ${item.one_liner ? `<p class="item-one-liner">${esc(item.one_liner)}</p>` : ''}
+    ${item.summary   ? `<p class="item-summary">${esc(item.summary)}</p>` : ''}
+    <div class="item-meta">
+      <span class="item-source">${esc(item.source_name || '')}</span>
+      <span class="tier-badge ${tierClass}">${tierLabel}</span>
+      ${pubDate ? `<span>${pubDate}</span>` : ''}
+    </div>
+    ${routeFlags}
+    ${tagHtml ? `<div class="item-tags">${tagHtml}</div>` : ''}
+    <details style="margin-top:10px">
+      <summary style="font-size:12px;color:var(--muted);cursor:pointer;">Score breakdown</summary>
+      <div style="margin-top:8px">${scoreBars}</div>
+    </details>
+  </div>`;
+}
+
+function renderRoutingFlags(r) {
+  const flags = [];
+  if (r.wiki_candidate) flags.push(`<span class="flag flag-wiki">📖 Wiki candidate</span>`);
+  if (r.research_note)  flags.push(`<span class="flag flag-note">🔍 Research note</span>`);
+  if (r.content_idea)   flags.push(`<span class="flag flag-content">💡 Content idea</span>`);
+  return flags.length ? `<div class="routing-flags">${flags.join('')}</div>` : '';
+}
+
+// ── Wiki ──────────────────────────────────────────────────────────────────────
+async function loadWikiData() {
+  try {
+    const r = await fetch('../wiki/index.json');
+    state.wikiData = r.ok ? (await r.json()) : [];
+  } catch(e) { state.wikiData = []; }
+  renderWikiList(state.wikiData);
+}
+
+function filterWiki() {
+  const q = document.getElementById('wiki-search').value.toLowerCase();
+  const filtered = state.wikiData.filter(p =>
+    (p.title || '').toLowerCase().includes(q) ||
+    (p.tags || []).some(t => t.toLowerCase().includes(q)) ||
+    (state.topic !== 'all' ? p.topic === state.topic : true)
+  );
+  renderWikiList(filtered, false);
+}
+
+function renderWikiList(pages, applyTopicFilter = true) {
+  const el = document.getElementById('wiki-content');
+  let filtered = applyTopicFilter && state.topic !== 'all'
+    ? pages.filter(p => p.topic === state.topic)
+    : pages;
+
+  if (!filtered.length) {
+    el.innerHTML = '<div class="empty-state"><h3>No wiki pages yet</h3><p>Wiki pages are created manually when an item passes the wiki threshold 3+ times.</p></div>';
+    return;
+  }
+
+  el.innerHTML = filtered.map(p => `
+    <div class="list-card" onclick="openWikiPage('${p.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <h3>${esc(p.title)}</h3>
+        <span style="font-size:11px;background:var(--bg);padding:2px 7px;border-radius:4px;color:var(--muted);margin-left:12px;flex-shrink:0">${p.status}</span>
+      </div>
+      <p>${esc(p.definition || '')}</p>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+        ${(p.tags||[]).slice(0,5).map(t=>`<span class="tag">${t}</span>`).join('')}
+      </div>
+      <div style="margin-top:8px;font-size:12px;color:var(--muted)">Updated: ${p.updated_at||p.created_at||''} · v${p.version||1}</div>
+    </div>`).join('');
+}
+
+function openWikiPage(id) {
+  fetch(`../wiki/${id}.json`)
+    .then(r => r.ok ? r.json() : null)
+    .then(p => { if (p) showWikiModal(p); })
+    .catch(() => {});
+}
+
+function showWikiModal(p) {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;overflow-y:auto;padding:40px 20px';
+  overlay.onclick = e => { if (e.target === overlay) overlay.remove(); };
+
+  const formulas = (p.formulas||[]).map(f =>
+    `<div style="background:#f8f9fa;border-radius:6px;padding:10px 14px;margin:6px 0;font-family:monospace;font-size:13px">${esc(f.name)}: <strong>${esc(f.expression)}</strong>${f.notes?`<br><em style="font-size:12px;color:var(--muted)">${esc(f.notes)}</em>`:''}</div>`
+  ).join('');
+
+  const concepts = (p.key_concepts||[]).map(c =>
+    `<li><strong>${esc(c.concept)}</strong>: ${esc(c.explanation)}</li>`
+  ).join('');
+
+  const practices = (p.best_practices||[]).map(b => `<li>${esc(b)}</li>`).join('');
+  const mistakes  = (p.common_mistakes||[]).map(m => `<li>${esc(m)}</li>`).join('');
+
+  overlay.innerHTML = `
+    <div style="background:#fff;max-width:720px;margin:0 auto;border-radius:12px;padding:32px;position:relative">
+      <button onclick="this.closest('div[style*=fixed]').remove()" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#999">✕</button>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">${p.topic}</div>
+      <h2 style="font-size:22px;font-weight:700;margin-bottom:12px">${esc(p.title)}</h2>
+      <p style="font-size:15px;margin-bottom:16px">${esc(p.definition||'')}</p>
+      ${p.why_it_matters ? `<div style="background:#edf4fc;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:14px"><strong>Why it matters:</strong> ${esc(p.why_it_matters)}</div>` : ''}
+      ${concepts ? `<h4 style="margin-bottom:8px;margin-top:16px">Key Concepts</h4><ul style="padding-left:18px;font-size:14px;line-height:1.8">${concepts}</ul>` : ''}
+      ${formulas ? `<h4 style="margin-bottom:8px;margin-top:16px">Formulas</h4>${formulas}` : ''}
+      ${practices ? `<h4 style="margin-bottom:8px;margin-top:16px">Best Practices</h4><ul style="padding-left:18px;font-size:14px;line-height:1.8">${practices}</ul>` : ''}
+      ${mistakes  ? `<h4 style="margin-bottom:8px;margin-top:16px">Common Mistakes</h4><ul style="padding-left:18px;font-size:14px;line-height:1.8;color:#c0392b">${mistakes}</ul>` : ''}
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">
+        Last reviewed: ${p.last_reviewed||p.updated_at||''} · Version ${p.version||1}
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
+// ── Notes ─────────────────────────────────────────────────────────────────────
+async function loadNotesData() {
+  try {
+    const r = await fetch('../notes/index.json');
+    state.notesData = r.ok ? (await r.json()) : [];
+  } catch(e) { state.notesData = []; }
+  renderNotesList(state.notesData);
+}
+
+function renderNotesList(notes) {
+  const el = document.getElementById('notes-content');
+  const filtered = state.topic !== 'all' ? notes.filter(n => n.topic === state.topic) : notes;
+  if (!filtered.length) {
+    el.innerHTML = '<div class="empty-state"><h3>No research notes yet</h3><p>Notes are created when curated items have composite ≥ 6.5 and practical value ≥ 8.</p></div>';
+    return;
+  }
+  el.innerHTML = filtered.map(n => `
+    <div class="list-card">
+      <div style="display:flex;justify-content:space-between">
+        <h3>${esc(n.title)}</h3>
+        <span style="font-size:11px;background:var(--bg);padding:2px 7px;border-radius:4px;color:var(--muted)">${n.status}</span>
+      </div>
+      <p>${esc(n.summary||'')}</p>
+      <div style="margin-top:8px;font-size:12px;color:var(--muted)">${n.created_at||''} · ${n.topic}</div>
+    </div>`).join('');
+}
+
+// ── Content Ideas ─────────────────────────────────────────────────────────────
+async function loadIdeasData() {
+  try {
+    const r = await fetch('../content-ideas/index.json');
+    state.ideasData = r.ok ? (await r.json()) : [];
+  } catch(e) { state.ideasData = []; }
+  renderIdeasList(state.ideasData);
+}
+
+function filterIdeas() {
+  renderIdeasList(state.ideasData);
+}
+
+const STATUS_COLORS = { idea:'#fdf8ec', drafted:'#edf4fc', scheduled:'#f5edfc', published:'#e8f5ee', archived:'#f5f5f5' };
+
+function renderIdeasList(ideas) {
+  const el = document.getElementById('ideas-content');
+  const statusFilter = document.getElementById('ideas-status-filter')?.value || 'all';
+  let filtered = state.topic !== 'all' ? ideas.filter(i => i.topic === state.topic) : ideas;
+  if (statusFilter !== 'all') filtered = filtered.filter(i => i.status === statusFilter);
+  filtered.sort((a,b) => (a.priority||5) - (b.priority||5));
+
+  if (!filtered.length) {
+    el.innerHTML = '<div class="empty-state"><h3>No content ideas match</h3></div>';
+    return;
+  }
+  el.innerHTML = filtered.map(i => {
+    const plat = (i.platforms||[]).map(p=>`<span class="tag">${p}</span>`).join('');
+    return `<div class="list-card" style="border-left:4px solid ${topicColor(i.topic)}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <h3>${esc(i.title)}</h3>
+        <span style="font-size:11px;padding:2px 8px;border-radius:4px;font-weight:600;background:${STATUS_COLORS[i.status]||'#f5f5f5'}">${i.status} · P${i.priority}</span>
+      </div>
+      ${i.hook ? `<p style="margin:6px 0;font-size:13px;font-style:italic;color:var(--muted)">"${esc(i.hook)}"</p>` : ''}
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+        <span class="tag">${i.format||''}</span>${plat}
+        <span class="tag">${i.estimated_effort||''} effort</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Stats ─────────────────────────────────────────────────────────────────────
+async function loadStatsData() {
+  try {
+    const r = await fetch('../stats/index.json');
+    state.statsData = r.ok ? (await r.json()) : [];
+  } catch(e) { state.statsData = []; }
+  renderStatsList(state.statsData);
+}
+
+function renderStatsList(stats) {
+  const el = document.getElementById('stats-content');
+  const filtered = state.topic !== 'all' ? stats.filter(s => s.topic === state.topic) : stats;
+  if (!filtered.length) {
+    el.innerHTML = '<div class="empty-state"><h3>No statistics yet</h3><p>Stats are extracted automatically for cricket items, and manually added for finance and real estate.</p></div>';
+    return;
+  }
+  el.innerHTML = `<table class="stats-table">
+    <thead><tr><th>Metric</th><th>Value</th><th>Entity</th><th>Context</th><th>Source</th><th>Date</th></tr></thead>
+    <tbody>${filtered.map(s => {
+      const entity = Object.values(s.entity||{}).filter(Boolean).join(' / ');
+      return `<tr>
+        <td><strong>${esc(s.metric_name||'')}</strong><br><small style="color:var(--muted)">${s.topic}${s.subtopic?` · ${s.subtopic}`:''}</small></td>
+        <td><strong>${esc(String(s.value||''))}</strong>${s.unit ? ` <small>${esc(s.unit)}</small>` : ''}</td>
+        <td style="font-size:13px">${esc(entity)}</td>
+        <td style="font-size:13px;max-width:240px">${esc(s.why_notable||s.context||'')}</td>
+        <td style="font-size:12px"><a href="${s.source?.url||'#'}" target="_blank" rel="noopener">${esc(s.source?.name||'')}</a></td>
+        <td style="font-size:12px;white-space:nowrap">${s.date||''}</td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+// ── Utilities ─────────────────────────────────────────────────────────────────
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Set default date to today
+  document.getElementById('digest-date').value = new Date().toISOString().split('T')[0];
+  loadLatestDigest();
+});
+</script>
+</body>
+</html>

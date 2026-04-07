@@ -1,0 +1,841 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Pitch Report &mdash; IPL 2026 Edition &middot; April 6, 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:          #0f172a;
+      --charcoal:      #1e293b;
+      --secondary:     #334155;
+      --muted:         #64748b;
+      --light:         #94a3b8;
+      --border:        #e2e8f0;
+      --bg:            #f8fafc;
+      --white:         #ffffff;
+      --green:         #15803d;
+      --green-light:   #dcfce7;
+      --green-border:  #86efac;
+      --gold:          #b45309;
+      --gold-mid:      #f59e0b;
+      --gold-light:    #fffbeb;
+      --gold-border:   #fde68a;
+      --red:           #b91c1c;
+      --red-light:     #fef2f2;
+      --red-border:    #fca5a5;
+      --blue:          #1d4ed8;
+      --blue-light:    #dbeafe;
+      --purple:        #7c3aed;
+      --purple-light:  #ede9fe;
+      --orange:        #c2410c;
+      --orange-light:  #fff7ed;
+      --orange-border: #fed7aa;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--secondary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 16px 48px;
+    }
+
+    /* â”€â”€ HOOK BANNER â”€â”€ */
+    .hook-banner {
+      background: var(--dark);
+      border-bottom: 3px solid var(--gold-mid);
+      padding: 26px 32px;
+      text-align: center;
+    }
+    .hook-banner p {
+      color: rgba(255,255,255,0.88);
+      font-size: 14.5px;
+      line-height: 1.75;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .hook-banner strong { color: #fbbf24; }
+
+    /* â”€â”€ HEADER â”€â”€ */
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      padding: 48px 32px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at center, rgba(245,158,11,0.08) 0%, transparent 70%);
+    }
+    .header-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #f59e0b;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .header-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.48);
+      letter-spacing: 1px;
+      position: relative;
+    }
+    .header-badges {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .hbadge {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .hbadge-gold  { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+    .hbadge-green { background: rgba(21,128,61,0.15);  color: #4ade80; border: 1px solid rgba(21,128,61,0.3); }
+    .hbadge-red   { background: rgba(185,28,28,0.15);  color: #f87171; border: 1px solid rgba(185,28,28,0.3); }
+
+    /* â”€â”€ SECTIONS â”€â”€ */
+    .section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 20px;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .section-header {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      font-size: 16px;
+      width: 32px; height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+    .section-body { padding: 20px 22px; }
+
+    /* section header colour themes */
+    .sh-gold   { background: linear-gradient(90deg, #fffbeb, #fef3c7); }
+    .sh-gold   h2 { color: #92400e; }
+    .sh-green  { background: linear-gradient(90deg, #f0fdf4, #dcfce7); }
+    .sh-green  h2 { color: #14532d; }
+    .sh-red    { background: linear-gradient(90deg, #fef2f2, #fee2e2); }
+    .sh-red    h2 { color: #7f1d1d; }
+    .sh-blue   { background: linear-gradient(90deg, #eff6ff, #dbeafe); }
+    .sh-blue   h2 { color: #1e3a8a; }
+    .sh-purple { background: linear-gradient(90deg, #f5f3ff, #ede9fe); }
+    .sh-purple h2 { color: #4c1d95; }
+    .sh-dark   { background: linear-gradient(90deg, #0f172a, #1e293b); }
+    .sh-dark   h2 { color: #f1f5f9; }
+    .sh-orange { background: linear-gradient(90deg, #fff7ed, #fed7aa); }
+    .sh-orange h2 { color: #7c2d12; }
+
+    /* â”€â”€ HEADLINES â”€â”€ */
+    .headline-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .headline-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; line-height: 1.55; }
+    .bullet { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .b-gold   { background: #f59e0b; }
+    .b-green  { background: #10b981; }
+    .b-red    { background: #ef4444; }
+    .b-blue   { background: #3b82f6; }
+    .b-purple { background: #8b5cf6; }
+
+    /* â”€â”€ MATCH CARDS â”€â”€ */
+    .match-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .match-card:last-child { margin-bottom: 0; }
+    .match-header {
+      background: var(--bg);
+      padding: 8px 14px;
+      font-size: 10.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .match-body { padding: 14px; }
+    .teams-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+    .team { text-align: center; flex: 1; }
+    .team-name { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 3px; }
+    .team-score { font-size: 20px; font-weight: 800; color: var(--dark); }
+    .team-score span { font-size: 12px; font-weight: 500; color: var(--muted); }
+    .versus { font-size: 11px; font-weight: 600; color: var(--light); }
+    .result-bar { text-align: center; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+    .result-win { background: #dcfce7; color: #14532d; }
+    .match-note { font-size: 12.5px; color: var(--secondary); margin-top: 10px; line-height: 1.55; }
+
+    /* â”€â”€ BAR CHART â”€â”€ */
+    .chart-title    { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+    .chart-subtitle { font-size: 11.5px; color: var(--muted); margin-bottom: 18px; }
+    .bar-row   { display: flex; align-items: center; gap: 10px; margin-bottom: 11px; }
+    .bar-label { font-size: 11.5px; font-weight: 600; color: var(--dark); width: 130px; flex-shrink: 0; line-height: 1.3; }
+    .bar-label small { display: block; font-size: 10px; font-weight: 400; color: var(--muted); }
+    .bar-track { flex: 1; height: 22px; background: var(--bg); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+    .bar-fill  { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 700; color: white; }
+    .bar-orange { background: linear-gradient(90deg, #ea580c, #f97316); }
+    .bar-green  { background: linear-gradient(90deg, #16a34a, #22c55e); }
+    .bar-blue   { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+    .bar-purple { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+    .bar-gold   { background: linear-gradient(90deg, #b45309, #f59e0b); }
+    .bar-cyan   { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+
+    /* â”€â”€ IPL FACTS â”€â”€ */
+    .fact-item { display: flex; gap: 14px; margin-bottom: 20px; align-items: flex-start; }
+    .fact-item:last-child { margin-bottom: 0; }
+    .fact-number {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--dark);
+      color: #f59e0b;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .fact-content { flex: 1; }
+    .fact-stat { font-size: 13.5px; font-weight: 600; color: var(--dark); margin-bottom: 6px; line-height: 1.45; }
+    .fact-interp {
+      background: var(--green-light);
+      border-left: 3px solid #22c55e;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 12px;
+      color: #14532d;
+      line-height: 1.55;
+    }
+    .fact-interp::before { content: 'Insight: '; font-weight: 700; }
+
+    /* â”€â”€ PULSE FORM TRACKER â”€â”€ */
+    .pulse-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .pulse-col { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .pulse-col-header { padding: 9px 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+    .pulse-col-header.fire  { background: #fef3c7; color: #92400e; }
+    .pulse-col-header.cold  { background: #eff6ff; color: #1e3a8a; }
+    .pulse-col-header.chart { background: #f0fdf4; color: #14532d; }
+    .pulse-col-body { padding: 10px 12px; }
+    .pulse-player { font-size: 12px; color: var(--secondary); padding: 5px 0; border-bottom: 1px solid #f1f5f9; line-height: 1.4; }
+    .pulse-player:last-child { border-bottom: none; }
+    .pulse-player strong { display: block; color: var(--dark); font-weight: 600; }
+    .team-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: 12px; border-bottom: 1px solid #f1f5f9; }
+    .team-row:last-child { border-bottom: none; }
+    .team-row-name { font-weight: 600; color: var(--dark); font-size: 11.5px; }
+    .momentum-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+    .badge-fire { background: #fef3c7; color: #92400e; }
+    .badge-ok   { background: #f0fdf4; color: #14532d; }
+    .badge-cold { background: #eff6ff; color: #1e40af; }
+
+    /* â”€â”€ DATA INSIGHT â”€â”€ */
+    .insight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .insight-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .insight-number { font-size: 26px; font-weight: 800; color: var(--dark); line-height: 1; margin-bottom: 4px; }
+    .insight-label  { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+    .insight-note   { font-size: 12px; color: var(--secondary); line-height: 1.5; }
+
+    /* â”€â”€ PLAYER / RISK / INTEL â”€â”€ */
+    .player-card { background: linear-gradient(135deg, var(--bg), var(--white)); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .player-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--dark); margin-bottom: 3px; }
+    .player-role { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 10px; }
+    .player-stats { display: flex; gap: 16px; margin-bottom: 12px; }
+    .player-stat { text-align: center; }
+    .player-stat-value { font-size: 20px; font-weight: 800; color: var(--dark); }
+    .player-stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; }
+    .player-why { font-size: 13px; color: var(--secondary); line-height: 1.6; padding-top: 12px; border-top: 1px solid var(--border); }
+
+    .risk-card { background: var(--red-light); border: 1px solid var(--red-border); border-radius: 10px; padding: 16px; }
+    .risk-name { font-size: 17px; font-weight: 700; color: var(--red); margin-bottom: 2px; }
+    .risk-level { display: inline-block; background: var(--red); color: white; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-bottom: 10px; }
+    .risk-stats { display: flex; gap: 16px; margin-bottom: 12px; }
+    .risk-stat { text-align: center; }
+    .risk-stat-value { font-size: 18px; font-weight: 800; color: var(--red); }
+    .risk-stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; }
+    .risk-note { font-size: 13px; color: #7f1d1d; line-height: 1.6; border-top: 1px solid var(--red-border); padding-top: 12px; }
+
+    .intel-item { border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .intel-item:last-child { margin-bottom: 0; }
+    .intel-matchup { font-size: 12.5px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+    .intel-stats { display: flex; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+    .intel-stat { background: var(--bg); border-radius: 6px; padding: 6px 10px; text-align: center; }
+    .intel-stat-val { font-size: 16px; font-weight: 800; color: var(--dark); }
+    .intel-stat-lbl { font-size: 9.5px; color: var(--muted); text-transform: uppercase; }
+    .intel-note { font-size: 12.5px; color: var(--secondary); line-height: 1.55; }
+
+    /* â”€â”€ WHAT'S NEXT â”€â”€ */
+    .next-list { display: flex; flex-direction: column; gap: 10px; }
+    .next-match { display: flex; justify-content: space-between; align-items: center; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; gap: 10px; }
+    .next-teams { font-size: 13px; font-weight: 700; color: var(--dark); }
+    .next-time  { font-size: 11.5px; color: var(--muted); }
+    .next-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; white-space: nowrap; }
+    .nb-live { background: #fef2f2; color: #9b1c1c; }
+    .nb-tmr  { background: #eff6ff; color: #1e40af; }
+
+    /* â”€â”€ WOMEN'S â”€â”€ */
+    .womens-card {
+      background: linear-gradient(135deg, #4c1d95, #6d28d9, #7c3aed);
+      border-radius: 10px;
+      padding: 20px;
+      color: white;
+    }
+    .womens-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+    .womens-stat  { font-size: 32px; font-weight: 900; color: #c4b5fd; line-height: 1; margin-bottom: 6px; }
+    .womens-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .womens-body  { font-size: 12.5px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+    /* â”€â”€ BONUS â”€â”€ */
+    .bonus-card {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border-radius: 10px;
+      padding: 20px;
+      color: white;
+    }
+    .bonus-eyebrow { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .bonus-stat  { font-size: 30px; font-weight: 900; color: #fbbf24; line-height: 1; margin-bottom: 6px; }
+    .bonus-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .bonus-body  { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+    /* â”€â”€ FOOTER â”€â”€ */
+    .footer { text-align: center; padding: 32px 16px; font-size: 11px; color: var(--light); }
+
+    /* â”€â”€ RESPONSIVE â”€â”€ */
+    @media (max-width: 580px) {
+      .pulse-grid   { grid-template-columns: 1fr; }
+      .insight-grid { grid-template-columns: 1fr; }
+      .hook-banner  { padding: 20px 16px; }
+      .hook-banner p { font-size: 13px; }
+      .header       { padding: 36px 16px 28px; }
+      .section-body { padding: 16px; }
+      .bar-label    { width: 100px; }
+    }
+
+    /* â”€â”€ PRINT / PDF â”€â”€ */
+    @media print {
+      @page { size: A4; margin: 12mm 14mm; }
+
+      body {
+        background: #f8fafc !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      .hook-banner { background: #0f172a !important; border-bottom: 3px solid #f59e0b !important; }
+      .hook-banner p { color: rgba(255,255,255,0.88) !important; }
+
+      .header { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%) !important; }
+      .header h1   { color: #ffffff !important; }
+      .header-tag  { color: #f59e0b !important; }
+      .header-sub  { color: rgba(255,255,255,0.48) !important; }
+
+      .sh-gold   { background: linear-gradient(90deg, #fffbeb, #fef3c7) !important; }
+      .sh-green  { background: linear-gradient(90deg, #f0fdf4, #dcfce7) !important; }
+      .sh-red    { background: linear-gradient(90deg, #fef2f2, #fee2e2) !important; }
+      .sh-blue   { background: linear-gradient(90deg, #eff6ff, #dbeafe) !important; }
+      .sh-purple { background: linear-gradient(90deg, #f5f3ff, #ede9fe) !important; }
+      .sh-dark   { background: linear-gradient(90deg, #0f172a, #1e293b) !important; }
+      .sh-dark h2 { color: #f1f5f9 !important; }
+      .sh-orange { background: linear-gradient(90deg, #fff7ed, #fed7aa) !important; }
+
+      .bar-orange { background: linear-gradient(90deg, #ea580c, #f97316) !important; }
+      .bar-green  { background: linear-gradient(90deg, #16a34a, #22c55e) !important; }
+      .bar-blue   { background: linear-gradient(90deg, #1d4ed8, #3b82f6) !important; }
+      .bar-purple { background: linear-gradient(90deg, #7c3aed, #a78bfa) !important; }
+      .bar-gold   { background: linear-gradient(90deg, #b45309, #f59e0b) !important; }
+      .bar-cyan   { background: linear-gradient(90deg, #0891b2, #22d3ee) !important; }
+
+      .fact-interp { background: #dcfce7 !important; border-left: 3px solid #22c55e !important; color: #14532d !important; }
+
+      .pulse-col-header.fire  { background: #fef3c7 !important; color: #92400e !important; }
+      .pulse-col-header.cold  { background: #eff6ff !important; color: #1e3a8a !important; }
+      .pulse-col-header.chart { background: #f0fdf4 !important; color: #14532d !important; }
+      .badge-fire { background: #fef3c7 !important; color: #92400e !important; }
+      .badge-ok   { background: #f0fdf4 !important; color: #14532d !important; }
+      .badge-cold { background: #eff6ff !important; color: #1e40af !important; }
+
+      .result-win  { background: #dcfce7 !important; color: #14532d !important; }
+      .insight-box { background: #f8fafc !important; }
+
+      .womens-card { background: linear-gradient(135deg, #4c1d95, #6d28d9, #7c3aed) !important; }
+      .womens-stat { color: #c4b5fd !important; }
+      .womens-body { color: rgba(255,255,255,0.75) !important; }
+
+      .bonus-card { background: linear-gradient(135deg, #1e293b, #0f172a) !important; }
+      .bonus-stat { color: #fbbf24 !important; }
+      .bonus-body { color: rgba(255,255,255,0.7) !important; }
+
+      .risk-card  { background: #fef2f2 !important; border-color: #fca5a5 !important; }
+      .risk-level { background: #b91c1c !important; }
+      .risk-note  { color: #7f1d1d !important; }
+
+      .section      { page-break-inside: avoid; break-inside: avoid; }
+      .match-card   { page-break-inside: avoid; break-inside: avoid; }
+      .insight-box  { page-break-inside: avoid; break-inside: avoid; }
+      .fact-item    { page-break-inside: avoid; break-inside: avoid; }
+      .pulse-col    { page-break-inside: avoid; break-inside: avoid; }
+      .intel-item   { page-break-inside: avoid; break-inside: avoid; }
+      .player-card  { page-break-inside: avoid; break-inside: avoid; }
+      .risk-card    { page-break-inside: avoid; break-inside: avoid; }
+      .womens-card  { page-break-inside: avoid; break-inside: avoid; }
+      .bonus-card   { page-break-inside: avoid; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â• HOOK BANNER â•â•â•â•â•â•â•â•â•â•â• -->
+  <div class="hook-banner">
+    <p>One franchise spent <strong>&#8377;25.2 crore</strong> on an Australian allrounder who has not bowled a single ball yet and has scored just <strong>20 runs</strong> in two matches. Another has a 22-year-old opener scoring <strong>71 off 23 balls</strong> &#8212; and nobody saw him coming. <strong>Tonight, these two meet at Eden Gardens.</strong></p>
+  </div>
+
+  <!-- â•â•â•â•â•â•â•â•â•â•â• HEADER â•â•â•â•â•â•â•â•â•â•â• -->
+  <div class="header">
+    <div class="header-tag">IPL 2026 &middot; Daily Intelligence</div>
+    <h1>The Pitch Report</h1>
+    <div class="header-sub">Monday, April 6, 2026 &nbsp;&middot;&nbsp; IPL 2026 Edition &nbsp;&middot;&nbsp; Match Week 1</div>
+    <div class="header-badges">
+      <span class="hbadge hbadge-gold">Orange Cap: Rizvi 160</span>
+      <span class="hbadge hbadge-green">RCB 3&#8211;0</span>
+      <span class="hbadge hbadge-red">CSK 0&#8211;3</span>
+    </div>
+  </div>
+
+  <div class="wrapper">
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 1. HEADLINES â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-gold">
+        <div class="section-icon">&#128240;</div>
+        <h2>Today&#8217;s Headlines</h2>
+      </div>
+      <div class="section-body">
+        <ul class="headline-list">
+          <li><span class="bullet b-gold"></span><span><strong>Orange Cap leader:</strong> Sameer Rizvi (DC) leads with 160 runs in just 2 innings &#8212; up from 51 runs in 2024 and 121 in 2025. A 213% jump in 2 seasons.</span></li>
+          <li><span class="bullet b-green"></span><span><strong>RCB unstoppable:</strong> Padikkal 111 + Tim David 62 off 28 powered RCB to 250/3 &#8212; the highest total ever scored against CSK in IPL history. RCB now 3&#8211;0 with NRR +1.28.</span></li>
+          <li><span class="bullet b-blue"></span><span><strong>Tonight&#8217;s fixture:</strong> KKR (0&#8211;2) host PBKS (2&#8211;0) at Eden Gardens. Shreyas Iyer &#8212; who led KKR to the 2024 IPL title at this very ground &#8212; returns as PBKS captain.</span></li>
+          <li><span class="bullet b-red"></span><span><strong>CSK crisis deepens:</strong> Ambati Rayudu publicly criticised CSK&#8217;s auction strategy. Three losses, no specialist death bowler, MS Dhoni yet to bat once.</span></li>
+          <li><span class="bullet b-purple"></span><span><strong>Eden factor:</strong> Eden Gardens is the fastest-scoring IPL ground since 2023. SRH posted 226/6 batting first there just 3 days ago.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 2. MATCH RECAP â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-blue">
+        <div class="section-icon">&#128203;</div>
+        <h2>Yesterday&#8217;s Match Recap</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="match-card">
+          <div class="match-header">IPL 2026 &middot; Match 10 &middot; M. Chinnaswamy Stadium, Bengaluru</div>
+          <div class="match-body">
+            <div class="teams-row">
+              <div class="team">
+                <div class="team-name">RCB</div>
+                <div class="team-score">250<span>/3 (20 ov)</span></div>
+              </div>
+              <div class="versus">vs</div>
+              <div class="team">
+                <div class="team-name">CSK</div>
+                <div class="team-score">207<span>/8 (20 ov)</span></div>
+              </div>
+            </div>
+            <div class="result-bar result-win">RCB won by 43 runs</div>
+            <div class="match-note">Devdutt Padikkal (111 off 59) set the platform before Tim David (62 off 28) detonated the death. RCB&#8217;s 250/3 is the highest IPL total ever against CSK in their 19-year rivalry. CSK&#8217;s chase was hamstrung by the same structural problem &#8212; their death bowling gave up 89 runs in overs 15&#8211;20. MS Dhoni did not bat.</div>
+          </div>
+        </div>
+
+        <div class="match-card">
+          <div class="match-header">IPL 2026 &middot; Match 9 &middot; Ekana Cricket Stadium, Lucknow</div>
+          <div class="match-body">
+            <div class="teams-row">
+              <div class="team">
+                <div class="team-name">LSG</div>
+                <div class="team-score">160<span>/5 (20 ov)</span></div>
+              </div>
+              <div class="versus">vs</div>
+              <div class="team">
+                <div class="team-name">SRH</div>
+                <div class="team-score">156<span>/9 (20 ov)</span></div>
+              </div>
+            </div>
+            <div class="result-bar result-win">LSG won by 4 runs</div>
+            <div class="match-note">A low-scoring thriller at Ekana. SRH needed 10 off the last over and managed just 5. Klaasen (68 off 42) and Nitish Reddy (34) were the only SRH batters to fire &#8212; but LSG&#8217;s spin unit strangled the middle overs. SRH drop to 1&#8211;2 despite their 226-run show at Eden just 3 days ago.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 3. CHART OF THE DAY â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-orange">
+        <div class="section-icon">&#128202;</div>
+        <h2>Chart of the Day &#8212; Orange Cap Race 2026</h2>
+      </div>
+      <div class="section-body">
+        <div class="chart-title">IPL 2026 Orange Cap Leaderboard</div>
+        <div class="chart-subtitle">Runs scored through opening fixtures &middot; April 6, 2026</div>
+
+        <div class="bar-row">
+          <div class="bar-label">Sameer Rizvi<small>DC &middot; 2 innings</small></div>
+          <div class="bar-track"><div class="bar-fill bar-orange" style="width:100%">160</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">H. Klaasen<small>SRH &middot; 3 innings</small></div>
+          <div class="bar-track"><div class="bar-fill bar-green" style="width:90.6%">145</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Rohit Sharma<small>MI &middot; 3 innings</small></div>
+          <div class="bar-track"><div class="bar-fill bar-blue" style="width:70.6%">113</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">D. Padikkal<small>RCB &middot; 2 innings</small></div>
+          <div class="bar-track"><div class="bar-fill bar-purple" style="width:69.4%">111</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">C. Connolly<small>PBKS &middot; 2 innings</small></div>
+          <div class="bar-track"><div class="bar-fill bar-gold" style="width:67.5%">108</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">R. Raghuvanshi<small>KKR &middot; 2 innings</small></div>
+          <div class="bar-track"><div class="bar-fill bar-cyan" style="width:64.4%">103</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 4. 3 IPL FACTS â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-dark">
+        <div class="section-icon">&#128161;</div>
+        <h2>3 IPL Facts Worth Your Attention</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="fact-item">
+          <div class="fact-number">1</div>
+          <div class="fact-content">
+            <div class="fact-stat">Sameer Rizvi scored 51 runs in the entire IPL 2024 season. Then 121 in IPL 2025. He already has 160 in 2 innings in IPL 2026. That is a 213% improvement across 3 consecutive seasons.</div>
+            <div class="fact-interp">When a young batter improves at this rate season-on-season, you are not watching a hot streak. You are watching a player arrive. DC saw this trend coming &#8212; they didn&#8217;t. No other team bid high enough for him at auction.</div>
+          </div>
+        </div>
+
+        <div class="fact-item">
+          <div class="fact-number">2</div>
+          <div class="fact-content">
+            <div class="fact-stat">Eden Gardens has produced the highest average first-innings score of any IPL venue since 2023. SRH posted 226/6 there in Match 7 of IPL 2026 &#8212; the third 220+ total at Eden in the last 18 months.</div>
+            <div class="fact-interp">Tonight&#8217;s KKR vs PBKS at Eden is not just a must-win for KKR &#8212; it&#8217;s a match where 220+ totals are genuinely likely. Whoever wins the toss and reads the pitch correctly will have a structural head start.</div>
+          </div>
+        </div>
+
+        <div class="fact-item">
+          <div class="fact-number">3</div>
+          <div class="fact-content">
+            <div class="fact-stat">RCB&#8217;s 250/3 against CSK is the highest total any team has ever posted against CSK in IPL history across all 19 editions. CSK&#8217;s previous worst was 246 conceded (2012). They&#8217;ve never leaked 250 before &#8212; until now.</div>
+            <div class="fact-interp">CSK&#8217;s core structural problem is not batting &#8212; it&#8217;s their death-bowling unit. They&#8217;ve conceded 89, 78, and 91 in the last 6 overs across 3 games. That&#8217;s not bad luck. That&#8217;s a pattern with no fix currently in sight.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 5. PULSE FORM TRACKER â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-green">
+        <div class="section-icon">&#128200;</div>
+        <h2>IPL Pulse &#8212; Form Tracker</h2>
+      </div>
+      <div class="section-body">
+        <div class="pulse-grid">
+
+          <div class="pulse-col">
+            <div class="pulse-col-header fire">&#128293; In Form</div>
+            <div class="pulse-col-body">
+              <div class="pulse-player"><strong>Sameer Rizvi</strong>DC &middot; 160 runs / 2 inn</div>
+              <div class="pulse-player"><strong>Devdutt Padikkal</strong>RCB &middot; 111 off 59 balls</div>
+              <div class="pulse-player"><strong>Priyansh Arya</strong>PBKS &middot; 71 off 23 balls</div>
+              <div class="pulse-player"><strong>Tim David</strong>RCB &middot; 62 off 28 balls</div>
+              <div class="pulse-player"><strong>Ravi Bishnoi</strong>LSG &middot; 5 wkts, econ 7.3</div>
+              <div class="pulse-player"><strong>C. Connolly</strong>PBKS &middot; 108 runs + 2 wkts</div>
+            </div>
+          </div>
+
+          <div class="pulse-col">
+            <div class="pulse-col-header cold">&#10052;&#65039; Under Pressure</div>
+            <div class="pulse-col-body">
+              <div class="pulse-player"><strong>Cameron Green</strong>KKR &middot; 20 runs, 0 balls bowled</div>
+              <div class="pulse-player"><strong>CSK Top Order</strong>0&#8211;3 &middot; avg 185 chasing 250+</div>
+              <div class="pulse-player"><strong>Travis Head</strong>SRH &middot; quiet start vs 2025</div>
+              <div class="pulse-player"><strong>Varun Chakravarthy</strong>KKR &middot; wickets but expensive</div>
+              <div class="pulse-player"><strong>CSK Death Bowlers</strong>89 runs last 6 overs vs RCB</div>
+            </div>
+          </div>
+
+          <div class="pulse-col">
+            <div class="pulse-col-header chart">&#128202; Team Momentum</div>
+            <div class="pulse-col-body">
+              <div class="team-row"><span class="team-row-name">RCB</span><span class="momentum-badge badge-fire">3&#8211;0 &#128293;</span></div>
+              <div class="team-row"><span class="team-row-name">PBKS</span><span class="momentum-badge badge-fire">2&#8211;0 &#128293;</span></div>
+              <div class="team-row"><span class="team-row-name">DC</span><span class="momentum-badge badge-fire">2&#8211;0 &#128293;</span></div>
+              <div class="team-row"><span class="team-row-name">LSG</span><span class="momentum-badge badge-ok">1&#8211;2 &#8594;</span></div>
+              <div class="team-row"><span class="team-row-name">SRH</span><span class="momentum-badge badge-ok">1&#8211;2 &#8594;</span></div>
+              <div class="team-row"><span class="team-row-name">RR</span><span class="momentum-badge badge-ok">1&#8211;2 &#8594;</span></div>
+              <div class="team-row"><span class="team-row-name">KKR</span><span class="momentum-badge badge-cold">0&#8211;2 &#10052;&#65039;</span></div>
+              <div class="team-row"><span class="team-row-name">CSK</span><span class="momentum-badge badge-cold">0&#8211;3 &#10052;&#65039;</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 6. DATA INSIGHT â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-blue">
+        <div class="section-icon">&#128290;</div>
+        <h2>Data Insight</h2>
+      </div>
+      <div class="section-body">
+        <div class="insight-grid">
+          <div class="insight-box">
+            <div class="insight-number">0.44</div>
+            <div class="insight-label">PBKS Win Ratio at Eden</div>
+            <div class="insight-note">PBKS have won only 44% of their IPL games at Eden Gardens &#8212; their second-lowest win ratio at any venue. Despite arriving 2&#8211;0, Eden is historically their toughest away ground.</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-number">226</div>
+            <div class="insight-label">SRH&#8217;s Innings at Eden (Match 7)</div>
+            <div class="insight-note">SRH posted 226/6 batting first at Eden in Match 7, confirming this ground&#8217;s run-fest tendency. Tonight KKR will know that first-innings 220+ is both achievable and necessary.</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-number">+1.28</div>
+            <div class="insight-label">RCB&#8217;s Current NRR</div>
+            <div class="insight-note">Best NRR in IPL 2026 so far. RCB are not just winning &#8212; they&#8217;re winning big. At 3&#8211;0, the compounding has begun. No team with NRR above +1.0 after 3 games has ever missed the playoffs.</div>
+          </div>
+          <div class="insight-box">
+            <div class="insight-number">89</div>
+            <div class="insight-label">CSK Conceded: Last 6 Overs vs RCB</div>
+            <div class="insight-note">CSK have conceded 89, 78, and 91 runs in the death overs across 3 games. It&#8217;s structural &#8212; no specialist death bowler has been fielded in any of the three losses. Three games. Same problem. No fix.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 7. PLAYER TO WATCH â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-gold">
+        <div class="section-icon">&#128065;&#65039;</div>
+        <h2>Player to Watch</h2>
+      </div>
+      <div class="section-body">
+        <div class="player-card">
+          <div class="player-name">Shreyas Iyer</div>
+          <div class="player-role">PBKS Captain &middot; Right-hand bat &middot; No. 3</div>
+          <div class="player-stats">
+            <div class="player-stat">
+              <div class="player-stat-value">1</div>
+              <div class="player-stat-label">IPL Title Won</div>
+            </div>
+            <div class="player-stat">
+              <div class="player-stat-value">KKR</div>
+              <div class="player-stat-label">Title Won With</div>
+            </div>
+            <div class="player-stat">
+              <div class="player-stat-value">Eden</div>
+              <div class="player-stat-label">Tonight&#8217;s Ground</div>
+            </div>
+            <div class="player-stat">
+              <div class="player-stat-value">2&#8211;0</div>
+              <div class="player-stat-label">PBKS Record</div>
+            </div>
+          </div>
+          <div class="player-why">Shreyas Iyer led KKR to their IPL 2024 title at this exact ground &#8212; Eden Gardens, Kolkata. Tonight he walks back through those gates as PBKS captain, the team currently rolling through the competition at 2&#8211;0. The narrative writes itself: returning to the house he built, now trying to burn it down. Iyer averages 44 in high-pressure IPL knockout-style games. If PBKS post 200+ tonight, it will have Shreyas Iyer&#8217;s fingerprints all over it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 8. RISK ALERT â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-red">
+        <div class="section-icon">&#9888;&#65039;</div>
+        <h2>Risk Alert</h2>
+      </div>
+      <div class="section-body">
+        <div class="risk-card">
+          <div class="risk-name">Cameron Green &middot; KKR</div>
+          <div class="risk-level">High Concern</div>
+          <div class="risk-stats">
+            <div class="risk-stat">
+              <div class="risk-stat-value">&#8377;25.2cr</div>
+              <div class="risk-stat-label">Auction Price</div>
+            </div>
+            <div class="risk-stat">
+              <div class="risk-stat-value">20</div>
+              <div class="risk-stat-label">Runs (2 games)</div>
+            </div>
+            <div class="risk-stat">
+              <div class="risk-stat-value">0</div>
+              <div class="risk-stat-label">Balls Bowled</div>
+            </div>
+          </div>
+          <div class="risk-note">Cameron Green is the most expensive Australian ever bought at an IPL auction. He was recruited to be an all-rounder: bat at 5&#8211;6, bowl 3&#8211;4 overs, change the game in both directions. Two matches in, he has scored 20 runs and sent down zero balls. KKR are already 0&#8211;2 and under enormous pressure at home tonight. If Green doesn&#8217;t contribute with both bat and ball at Eden in front of a packed crowd, the &#8377;25.2 crore question becomes very loud, very fast. The clock is ticking.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 9. CRICKET INTELLIGENCE â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-dark">
+        <div class="section-icon">&#129504;</div>
+        <h2>Cricket Intelligence</h2>
+      </div>
+      <div class="section-body">
+
+        <div class="intel-item">
+          <div class="intel-matchup">Yuzvendra Chahal (PBKS) vs Ajinkya Rahane (KKR)</div>
+          <div class="intel-stats">
+            <div class="intel-stat"><div class="intel-stat-val">4</div><div class="intel-stat-lbl">Dismissals</div></div>
+            <div class="intel-stat"><div class="intel-stat-val">46</div><div class="intel-stat-lbl">Runs Conceded</div></div>
+            <div class="intel-stat"><div class="intel-stat-val">45</div><div class="intel-stat-lbl">Balls Faced</div></div>
+            <div class="intel-stat"><div class="intel-stat-val">61.3</div><div class="intel-stat-lbl">SR vs Chahal</div></div>
+          </div>
+          <div class="intel-note">Chahal has dismissed Rahane 4 times in IPL cricket &#8212; more than any other bowler. Rahane faces Chahal at a strike rate of 61.3 &#8212; significantly below his IPL average. If Chahal is introduced early tonight and Rahane opens or bats at 3, this matchup could be the defining tactical moment in PBKS&#8217;s bowling plan. At 0&#8211;2, KKR cannot afford a slow Rahane start.</div>
+        </div>
+
+        <div class="intel-item">
+          <div class="intel-matchup">Yuzvendra Chahal (PBKS) vs Rinku Singh (KKR)</div>
+          <div class="intel-stats">
+            <div class="intel-stat"><div class="intel-stat-val">2</div><div class="intel-stat-lbl">Dismissals</div></div>
+            <div class="intel-stat"><div class="intel-stat-val">15</div><div class="intel-stat-lbl">Runs Conceded</div></div>
+            <div class="intel-stat"><div class="intel-stat-val">19</div><div class="intel-stat-lbl">Balls Faced</div></div>
+            <div class="intel-stat"><div class="intel-stat-val">78.9</div><div class="intel-stat-lbl">SR vs Chahal</div></div>
+          </div>
+          <div class="intel-note">Rinku Singh is KKR&#8217;s most dangerous death-overs batter, regularly striking above 160 in the slog. Against Chahal, his SR drops to 78.9. If KKR attempt a late-innings acceleration using Rinku in overs 16&#8211;20, PBKS captain Shreyas Iyer &#8212; who knows Rinku intimately from their KKR days &#8212; may go to Chahal as an out-of-the-box option intentionally.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 10. WHAT'S NEXT â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-green">
+        <div class="section-icon">&#128197;</div>
+        <h2>What&#8217;s Next</h2>
+      </div>
+      <div class="section-body">
+        <div class="next-list">
+          <div class="next-match">
+            <div>
+              <div class="next-teams">KKR vs PBKS</div>
+              <div class="next-time">Tonight &middot; Eden Gardens, Kolkata &middot; 7:30 PM IST</div>
+            </div>
+            <span class="next-badge nb-live">Tonight</span>
+          </div>
+          <div class="next-match">
+            <div>
+              <div class="next-teams">CSK vs DC</div>
+              <div class="next-time">Tomorrow &middot; MA Chidambaram Stadium, Chennai &middot; 7:30 PM IST</div>
+            </div>
+            <span class="next-badge nb-tmr">Tomorrow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 11. WOMEN'S CRICKET â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-purple">
+        <div class="section-icon">&#127936;</div>
+        <h2>Women&#8217;s Cricket Fun Fact</h2>
+      </div>
+      <div class="section-body">
+        <div class="womens-card">
+          <div class="womens-eyebrow">Women&#8217;s Cricket &middot; Record Watch</div>
+          <div class="womens-stat">200*</div>
+          <div class="womens-title">Laura Wolvaardt &#8212; First Women&#8217;s ODI Double Century</div>
+          <div class="womens-body">In January 2024, South Africa&#8217;s Laura Wolvaardt scored 200* off 151 balls against West Indies Women &#8212; becoming the first batter in women&#8217;s ODI history to ever score a double century. She hit 20 fours and 8 sixes. The innings broke a ceiling that had stood unchallenged across 47 years of women&#8217;s ODI cricket. The previous highest individual score was 188*. Wolvaardt didn&#8217;t just break the record &#8212; she did it by 12 runs in one extraordinary innings at Cape Town.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- â•â•â•â•â•â•â•â•â•â•â• 12. BONUS â•â•â•â•â•â•â•â•â•â•â• -->
+    <div class="section">
+      <div class="section-header sh-dark">
+        <div class="section-icon">&#127919;</div>
+        <h2>Bonus &#8212; Did You Know?</h2>
+      </div>
+      <div class="section-body">
+        <div class="bonus-card">
+          <div class="bonus-eyebrow">Stat of the Day</div>
+          <div class="bonus-stat">71 off 23</div>
+          <div class="bonus-title">Priyansh Arya &#8212; Lowest Ball Count for a POTM Opening Innings in Men&#8217;s T20 History</div>
+          <div class="bonus-body">PBKS opener Priyansh Arya&#8217;s 71 off 23 balls in IPL 2026 is the lowest ball count ever for a Player of the Match-winning opening innings in men&#8217;s T20 cricket. His strike rate of 308.7 ranks among the top five highest individual innings SR ever recorded in men&#8217;s franchise T20. Six sixes. Seven fours. Twenty-three deliveries. And not a single pre-season analyst had him in their top ten IPL performers to watch this year. The story of IPL 2026 might just be the players nobody predicted yet everybody&#8217;s now watching.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <div class="footer">
+    The Pitch Report &nbsp;&middot;&nbsp; IPL 2026 Edition &nbsp;&middot;&nbsp; April 6, 2026 &nbsp;&middot;&nbsp; Data sourced from ESPNcricinfo &amp; Cricbuzz
+  </div>
+
+</body>
+</html>

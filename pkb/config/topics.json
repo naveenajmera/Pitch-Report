@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "topics": [
+    {
+      "id": "power-bi",
+      "label": "Power BI & Microsoft Fabric",
+      "subtopics": ["dax", "power-query", "semantic-models", "fabric", "ontology", "dataflows", "paginated-reports", "copilot-in-fabric"],
+      "keywords": ["Power BI", "Microsoft Fabric", "DAX", "Power Query", "semantic model", "XMLA", "dataflow", "lakehouse", "DirectLake", "OneLake", "report server", "gateway", "deployment pipeline"],
+      "color": "#f2c811"
+    },
+    {
+      "id": "ai-agents",
+      "label": "AI Agents, Copilot & Dev Workflows",
+      "subtopics": ["mcp-servers", "github-copilot", "vscode", "ai-on-bi", "llm-tools", "agents"],
+      "keywords": ["MCP", "Model Context Protocol", "GitHub Copilot", "VS Code", "AI agent", "LLM", "OpenAI", "Anthropic", "Claude", "Copilot chat", "function calling", "tool use", "agentic"],
+      "color": "#0078d4"
+    },
+    {
+      "id": "finance-analytics",
+      "label": "Finance Analytics & CFO Reporting",
+      "subtopics": ["accounts-receivable", "dso", "cash-flow", "cfo-reporting", "working-capital", "treasury"],
+      "keywords": ["DSO", "days sales outstanding", "accounts receivable", "AR", "cash flow", "working capital", "CFO", "finance dashboard", "treasury", "aging report", "collections", "invoice", "payment terms"],
+      "color": "#107c10"
+    },
+    {
+      "id": "dubai-real-estate",
+      "label": "Dubai Real Estate & Property Intelligence",
+      "subtopics": ["service-charges", "property-pricing", "rental-yields", "community-analysis", "developer-analysis", "off-plan", "dld-data"],
+      "keywords": ["Dubai real estate", "DLD", "property", "villa", "apartment", "off-plan", "rental yield", "service charge", "JVC", "Dubai Hills", "DAMAC", "Emaar", "Sobha", "community", "master developer"],
+      "color": "#d13438"
+    },
+    {
+      "id": "markets-business",
+      "label": "Markets, Business Ideas & Product Opportunities",
+      "subtopics": ["startup-ideas", "product-opportunities", "market-trends", "technology-business"],
+      "keywords": ["startup", "product", "market trend", "SaaS", "venture", "business model", "niche", "B2B", "opportunity", "disruption", "fintech", "proptech"],
+      "color": "#8764b8"
+    },
+    {
+      "id": "cricket",
+      "label": "Cricket News & Statistics",
+      "subtopics": ["test-cricket", "odi", "t20", "ipl", "player-stats", "ranking", "series-results"],
+      "keywords": ["cricket", "Test match", "ODI", "T20", "IPL", "ICC", "batting average", "bowling figures", "century", "wicket", "series", "World Cup", "ranking"],
+      "color": "#00704a"
+    }
+  ]
+}

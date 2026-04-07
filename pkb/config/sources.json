@@ -1,0 +1,305 @@
+{
+  "version": "1.0",
+  "sources": [
+
+    {
+      "id": "fabric-blog",
+      "topic": "power-bi",
+      "name": "Microsoft Fabric Blog (Official)",
+      "url": "https://blog.fabric.microsoft.com",
+      "rss": "https://blog.fabric.microsoft.com/en-us/blog/feed/",
+      "credibility_tier": 1,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "powerbi-updates",
+      "topic": "power-bi",
+      "name": "Power BI Desktop Monthly Update",
+      "url": "https://powerbi.microsoft.com/en-us/blog/",
+      "rss": "https://powerbi.microsoft.com/en-us/blog/feed/",
+      "credibility_tier": 1,
+      "frequency": "monthly",
+      "active": true
+    },
+    {
+      "id": "sqlbi",
+      "topic": "power-bi",
+      "name": "SQLBI Articles",
+      "url": "https://www.sqlbi.com/articles/",
+      "rss": "https://www.sqlbi.com/feed/",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "guy-in-a-cube",
+      "topic": "power-bi",
+      "name": "Guy in a Cube (YouTube RSS)",
+      "url": "https://www.youtube.com/@GuyInACube",
+      "rss": "https://www.youtube.com/feeds/videos.xml?channel_id=UCFp6MWD0lFYjYUFICDrgRVQ",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "powerbi-community",
+      "topic": "power-bi",
+      "name": "Power BI Community Blog",
+      "url": "https://community.fabric.microsoft.com/t5/Microsoft-Power-BI-Blog/bg-p/power-bi_blog",
+      "rss": "https://community.fabric.microsoft.com/t5/Microsoft-Power-BI-Blog/bg-p/power-bi_blog/rss",
+      "credibility_tier": 3,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "excelerator-bi",
+      "topic": "power-bi",
+      "name": "Excelerator BI",
+      "url": "https://exceleratorbi.com.au/blog/",
+      "rss": "https://exceleratorbi.com.au/feed/",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+
+    {
+      "id": "github-blog",
+      "topic": "ai-agents",
+      "name": "GitHub Blog",
+      "url": "https://github.blog",
+      "rss": "https://github.blog/feed/",
+      "credibility_tier": 1,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "vscode-updates",
+      "topic": "ai-agents",
+      "name": "VS Code Release Notes",
+      "url": "https://code.visualstudio.com/updates",
+      "rss": "https://code.visualstudio.com/feed.xml",
+      "credibility_tier": 1,
+      "frequency": "monthly",
+      "active": true
+    },
+    {
+      "id": "simon-willison",
+      "topic": "ai-agents",
+      "name": "Simon Willison's Blog",
+      "url": "https://simonwillison.net",
+      "rss": "https://simonwillison.net/atom/everything/",
+      "credibility_tier": 2,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "anthropic-news",
+      "topic": "ai-agents",
+      "name": "Anthropic News",
+      "url": "https://www.anthropic.com/news",
+      "rss": "https://www.anthropic.com/rss.xml",
+      "credibility_tier": 1,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "openai-blog",
+      "topic": "ai-agents",
+      "name": "OpenAI Blog",
+      "url": "https://openai.com/blog",
+      "rss": "https://openai.com/blog/rss.xml",
+      "credibility_tier": 1,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "mcp-github-releases",
+      "topic": "ai-agents",
+      "name": "MCP Specification GitHub Releases",
+      "url": "https://github.com/modelcontextprotocol/specification",
+      "rss": "https://github.com/modelcontextprotocol/specification/releases.atom",
+      "credibility_tier": 1,
+      "frequency": "weekly",
+      "active": true
+    },
+
+    {
+      "id": "cfo-com",
+      "topic": "finance-analytics",
+      "name": "CFO.com",
+      "url": "https://www.cfo.com",
+      "rss": "https://www.cfo.com/rss/",
+      "credibility_tier": 2,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "iofm",
+      "topic": "finance-analytics",
+      "name": "Institute of Finance & Management",
+      "url": "https://www.iofm.com/blog",
+      "rss": "https://www.iofm.com/blog/rss.xml",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "afp-online",
+      "topic": "finance-analytics",
+      "name": "AFP (Association for Financial Professionals)",
+      "url": "https://www.afponline.org/ideas-inspiration/resources",
+      "rss": "https://www.afponline.org/rss/news",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+
+    {
+      "id": "dld-reports",
+      "topic": "dubai-real-estate",
+      "name": "Dubai Land Department — Transaction Stats",
+      "url": "https://www.dubailand.gov.ae/en/open-data/real-estate-statistics/",
+      "rss": null,
+      "credibility_tier": 1,
+      "frequency": "monthly",
+      "active": true,
+      "manual_fetch": true,
+      "notes": "Download monthly transaction CSV — no RSS available. Check first week of each month."
+    },
+    {
+      "id": "bayut-blog",
+      "topic": "dubai-real-estate",
+      "name": "Bayut Market Reports",
+      "url": "https://www.bayut.com/mybayut/category/market-reports/",
+      "rss": "https://www.bayut.com/mybayut/feed/",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "propertyfinder-blog",
+      "topic": "dubai-real-estate",
+      "name": "Property Finder Blog",
+      "url": "https://www.propertyfinder.ae/en/blog",
+      "rss": "https://www.propertyfinder.ae/en/blog/feed/",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "gulfnews-property",
+      "topic": "dubai-real-estate",
+      "name": "Gulf News — Property",
+      "url": "https://gulfnews.com/business/property",
+      "rss": "https://gulfnews.com/rss/property",
+      "credibility_tier": 2,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "zawya-realestate",
+      "topic": "dubai-real-estate",
+      "name": "Zawya — Real Estate",
+      "url": "https://www.zawya.com/en/real-estate",
+      "rss": null,
+      "credibility_tier": 2,
+      "frequency": "daily",
+      "active": false,
+      "notes": "RSS not reliable — scrape headlines manually or set up alert"
+    },
+
+    {
+      "id": "stratechery",
+      "topic": "markets-business",
+      "name": "Stratechery",
+      "url": "https://stratechery.com",
+      "rss": "https://stratechery.com/feed/",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true,
+      "notes": "Paid subscription required for full articles — free articles available via RSS"
+    },
+    {
+      "id": "cbinsights",
+      "topic": "markets-business",
+      "name": "CB Insights Research",
+      "url": "https://www.cbinsights.com/research/",
+      "rss": "https://www.cbinsights.com/research/feed/",
+      "credibility_tier": 2,
+      "frequency": "weekly",
+      "active": true
+    },
+    {
+      "id": "product-hunt-daily",
+      "topic": "markets-business",
+      "name": "Product Hunt Daily Newsletter",
+      "url": "https://www.producthunt.com",
+      "rss": "https://www.producthunt.com/feed?category=undefined",
+      "credibility_tier": 3,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "bloomberg-tech",
+      "topic": "markets-business",
+      "name": "Bloomberg Technology",
+      "url": "https://www.bloomberg.com/technology",
+      "rss": "https://feeds.bloomberg.com/technology/news.rss",
+      "credibility_tier": 2,
+      "frequency": "daily",
+      "active": true
+    },
+
+    {
+      "id": "espncricinfo",
+      "topic": "cricket",
+      "name": "ESPNcricinfo",
+      "url": "https://www.espncricinfo.com",
+      "rss": "http://www.espncricinfo.com/rss/content/story/feeds/0.xml",
+      "credibility_tier": 1,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "cricbuzz",
+      "topic": "cricket",
+      "name": "Cricbuzz News",
+      "url": "https://www.cricbuzz.com",
+      "rss": "https://www.cricbuzz.com/cricket-news/rss-feed",
+      "credibility_tier": 1,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "icc-news",
+      "topic": "cricket",
+      "name": "ICC Official News",
+      "url": "https://www.icc-cricket.com/news",
+      "rss": "https://www.icc-cricket.com/newsrss",
+      "credibility_tier": 1,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "wisden",
+      "topic": "cricket",
+      "name": "Wisden Cricket",
+      "url": "https://www.wisden.com/stories",
+      "rss": "https://www.wisden.com/feed",
+      "credibility_tier": 2,
+      "frequency": "daily",
+      "active": true
+    },
+    {
+      "id": "cricket-monthly",
+      "topic": "cricket",
+      "name": "The Cricket Monthly (ESPN)",
+      "url": "https://www.thecricketmonthly.com",
+      "rss": "https://www.thecricketmonthly.com/rss",
+      "credibility_tier": 2,
+      "frequency": "monthly",
+      "active": true
+    }
+  ]
+}
